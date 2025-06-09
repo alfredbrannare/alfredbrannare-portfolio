@@ -2,6 +2,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
+import tseslint from 'typescript-eslint';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -11,15 +12,28 @@ const compat = new FlatCompat({
 });
 
 export default [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  ...compat.extends(
+    'next/core-web-vitals',
+    'next/typescript'
+  ),
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        project: ['./tsconfig.json'],
+        tsconfigRootDir: __dirname,
+      },
+    },
     rules: {
       'react/jsx-curly-brace-presence': [
         'warn',
         { props: 'never', children: 'never' },
       ],
-      'react/self-closing-comp': ['warn', { component: true, html: true }],
+      'react/self-closing-comp': [
+        'warn',
+        { component: true, html: true },
+      ],
       'react-hooks/exhaustive-deps': 'warn',
 
       'no-unused-vars': 'off',
@@ -51,7 +65,8 @@ export default [
           fixStyle: 'separate-type-imports',
         },
       ],
-      '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+      '@typescript-eslint/prefer-nullish-coalescing':
+        'warn',
       '@typescript-eslint/prefer-optional-chain': 'warn',
     },
   },
