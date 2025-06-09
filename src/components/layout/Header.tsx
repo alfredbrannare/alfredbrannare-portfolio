@@ -1,20 +1,18 @@
-import Link from 'next/link';
 import {
   Button,
   Sheet,
   SheetContent,
   SheetTrigger,
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
+  DialogTitle,
 } from '../ui';
 import { MenuIcon } from 'lucide-react';
 
 export default function Header() {
   return (
-    <header className="flex flex col justify-between items-center px-4 py-4 border border-grey">
-      <h1>Hello</h1>
+    <header className="flex flex-row justify-between items-center px-4 py-4 bg-stone-900">
+      <h1 className="text-amber-500 font-semibold">
+        Alfred Brännare
+      </h1>
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon">
@@ -22,7 +20,10 @@ export default function Header() {
           </Button>
         </SheetTrigger>
 
-        <SheetContent side="left">
+        <SheetContent side="left" className="py-4 px-4">
+          <DialogTitle className="text-center">
+            Side Menu
+          </DialogTitle>
           <h2>Test</h2>
         </SheetContent>
       </Sheet>
