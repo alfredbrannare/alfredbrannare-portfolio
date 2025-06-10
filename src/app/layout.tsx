@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { Roboto } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 
-const roboto = Roboto({
-  weight: '400',
+const poppins = Poppins({
+  weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
 });
 
@@ -21,9 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} antialiased`}>
+      <body className={`${poppins.className} antialiased`}>
         <Header />
-        {children}
+        <div className="max-w-[1280px] mx-auto p-6">
+          {children}
+        </div>
       </body>
     </html>
   );
