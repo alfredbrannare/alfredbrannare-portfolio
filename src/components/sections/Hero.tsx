@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { HeroCardProps } from '@/types';
-
+import { ChevronRight } from 'lucide-react';
 import {
   Card,
   CardHeader,
@@ -58,8 +58,14 @@ const Hero: FC<HeroCardProps> = ({
         </CardContent>
         <CardFooter className="justify-center p-0 pt-4 flex md:justify-end">
           {linkText && linkHref && (
-            <Button asChild variant="default">
-              <Link href={linkHref}>{linkText} &rarr;</Link>
+            <Button
+              asChild
+              variant="default"
+              className="hover:text-amber-400 transition duration-200"
+            >
+              <Link href={linkHref}>
+                {linkText} <ChevronRight />
+              </Link>
             </Button>
           )}
         </CardFooter>
