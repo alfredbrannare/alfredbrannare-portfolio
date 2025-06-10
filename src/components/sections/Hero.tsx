@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { HeroCardProps } from '@/types';
 
 import {
   Card,
@@ -12,17 +13,6 @@ import {
   Separator,
   Button,
 } from '../ui';
-
-interface HeroCardProps {
-  title: string;
-  description: string | React.ReactNode;
-  content: string | React.ReactNode;
-  linkText?: string;
-  linkHref?: string;
-  children?: React.ReactNode;
-  imageUrl?: string;
-  imageAlt?: string;
-}
 
 const Hero: FC<HeroCardProps> = ({
   title,
