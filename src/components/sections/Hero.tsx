@@ -61,12 +61,12 @@ const Hero: FC<HeroCardProps> = ({
           </CardDescription>
         </CardHeader>
         <CardContent className="p-0 pb-4 flex-grow">
-          <p className="text-base md:text-lg text-gray-700">
+          <div className="text-base md:text-lg text-gray-700">
             {content}
-          </p>
+          </div>
           {children}
         </CardContent>
-        <CardFooter className="p-0 pt-4 flex justify-end">
+        <CardFooter className="justify-center p-0 pt-4 flex md:justify-end">
           {linkText && linkHref && (
             <Button asChild variant="default">
               <Link href={linkHref}>{linkText} &rarr;</Link>
