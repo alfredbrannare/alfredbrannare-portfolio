@@ -1,30 +1,47 @@
-import Hero from '@/components/sections/Hero';
-import Image from 'next/image';
+import { Hero } from '@/components/sections';
 
 export default function Home() {
   return (
-    <main className="my-6 mx-6">
+    <main>
       <Hero
-        title="Who am I?"
+        title="Hello,"
         description={
-          <p>
-            My name is <strong>Alfred</strong>, and I am
-            studying{' '}
-            <strong>
-              System Development in Java and JavaScript
-            </strong>{' '}
-            at <strong>Lernia</strong>.
-          </p>
+          <div>
+            <p>
+              My name is <strong>Alfred</strong>, and I am
+              studying{' '}
+              <strong>
+                Software Development in Java and JavaScript
+              </strong>{' '}
+              at Lernia.
+            </p>
+          </div>
         }
-        content="I'm a passionate software developer specializing in front-end technologies with a keen eye for user experience and clean code. I enjoy building intuitive and performant web applications."
+        content={
+          <div>
+            <p>
+              As a student of Software Development in Java
+              and JavaScript, I&apos;m building a strong
+              foundation in both frontend and backend
+              technologies.
+            </p>
+            <br />
+            <p>
+              My studies have covered full-stack
+              development, MongoDB, Docker, SQL, TypeScript
+              and more.
+            </p>
+            <br />
+            <p>
+              I&apos;m eager to continue expanding my
+              expertise.
+            </p>
+          </div>
+        }
         linkText="Learn More About Me"
         linkHref="/about"
-      />
-      <Image
-        src="/images/portrait.webp"
-        width="450"
-        height="450"
-        alt="Image of the Alfred Brännare"
+        imageUrl="/images/portrait.webp"
+        imageAlt="Portrait of Alfred Brännare"
       />
     </main>
   );

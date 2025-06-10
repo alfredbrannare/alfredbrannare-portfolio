@@ -1,4 +1,6 @@
 import type { FC } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 import {
   Card,
@@ -7,16 +9,19 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
+  Separator,
+  Button,
 } from '../ui';
-import Link from 'next/link';
 
 interface HeroCardProps {
   title: string;
   description: string | React.ReactNode;
-  content: string;
+  content: string | React.ReactNode;
   linkText?: string;
   linkHref?: string;
   children?: React.ReactNode;
+  imageUrl?: string;
+  imageAlt?: string;
 }
 
 const Hero: FC<HeroCardProps> = ({
@@ -26,30 +31,55 @@ const Hero: FC<HeroCardProps> = ({
   linkText,
   linkHref,
   children,
+  imageUrl,
+  imageAlt,
 }) => {
+  let imageComponent = null;
+  if (imageUrl) {
+    imageComponent = (
+      <Image
+        src={imageUrl}
+        width={450}
+        height={450}
+        alt={imageAlt ?? 'Hero image'}
+        priority
+        className="rounded-lg object-cover"
+      />
+    );
+  }
+
   return (
-    <Card className="max-w-[500px] shadow-lg hover:shadow-xl transition-shadow duration-200 h-full flex flex-col">
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-      <CardContent className="flex-grow">
-        <p className="text-sm text-gray-700">{content}</p>
-        {children}
-      </CardContent>
-      <CardFooter className="flex justify-end mt-4">
-        {linkText && linkHref && (
-          <Link
-            href={linkHref}
-            className="text-blue-600 hover:underline"
-          >
-            {' '}
-            {linkText} &rarr;{' '}
-          </Link>
-        )}
-      </CardFooter>
+    <Card className="w-full flex flex-col md:flex-row items-center justify-between shadow-lg p-6 hover:shadow-xl transition-shadow duration-200">
+      <div className="flex flex-col md:w-1/2 lg:w-2/3">
+        <CardHeader className="p-0 pb-4">
+          <CardTitle className="text-3xl md:text-4xl lg:text-5xl font-bold">
+            {title}
+          </CardTitle>
+          <Separator className="my-4" />{' '}
+          <CardDescription className="text-lg md:text-xl text-gray-600">
+            {description}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="p-0 pb-4 flex-grow">
+          <p className="text-base md:text-lg text-gray-700">
+            {content}
+          </p>
+          {children}
+        </CardContent>
+        <CardFooter className="p-0 pt-4 flex justify-end">
+          {linkText && linkHref && (
+            <Button asChild variant="default">
+              <Link href={linkHref}>{linkText} &rarr;</Link>
+            </Button>
+          )}
+        </CardFooter>
+      </div>
+
+      <div className="flex-shrink-0 md:w-1/2 lg:w-1/3 flex justifyenter items-center">
+        {imageComponent}
+      </div>
     </Card>
   );
 };
 
-export default Hero;
+export { Hero };
