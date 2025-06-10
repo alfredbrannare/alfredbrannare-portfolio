@@ -3,3 +3,5 @@ export * from './navigation-menu';
 export * from './sheet';
 export * from './dialog';
 export * from './card';
+export * from './avatar';
+export * from './separator';
