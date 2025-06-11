@@ -1,4 +1,5 @@
-export interface HeroCardProps {
+//Hero
+export interface HeroSectionProps {
   title: string;
   description: string | React.ReactNode;
   content: string | React.ReactNode;
@@ -8,3 +9,10 @@ export interface HeroCardProps {
   imageUrl?: string;
   imageAlt?: string;
 }
+
+//Techstack
+export type TechStack = {
+  title: string;
+  image: string;
+  url: string;
+};

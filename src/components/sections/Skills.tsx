@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 import {
   Tabs,
   TabsContent,
@@ -5,27 +8,64 @@ import {
   TabsTrigger,
 } from '../ui';
 
+import {
+  frontendSkills,
+  backendSkills,
+} from '@/lib/techstack';
+
 const Skills = () => {
   return (
     <section className="flex flex-col justify-center items-center">
       <h1>Skills</h1>
       <Tabs
-        defaultValue="account"
+        defaultValue="frontend"
         className="w-[400px] justify-center items-center"
       >
         <TabsList>
-          <TabsTrigger value="account">
+          <TabsTrigger value="frontend">
             Frontend
           </TabsTrigger>
-          <TabsTrigger value="password">
-            Backend
-          </TabsTrigger>
+          <TabsTrigger value="backend">Backend</TabsTrigger>
         </TabsList>
-        <TabsContent value="account">
-          Make changes to your account here.
+        <TabsContent
+          value="frontend"
+          className="flex flex-row"
+        >
+          {frontendSkills.map((skill) => (
+            <Link
+              key={skill.title}
+              className="flex flex-col justify-center items-center my-4 mx-4"
+              href={skill.url}
+            >
+              <Image
+                src={skill.image}
+                alt={`${skill.title} icon`}
+                width="50"
+                height="50"
+              />
+              <span>{skill.title}</span>
+            </Link>
+          ))}
         </TabsContent>
-        <TabsContent value="password">
-          Change your password here.
+        <TabsContent
+          value="backend"
+          className="flex flex-row"
+        >
+          {backendSkills.map((skill) => (
+            <Link
+              key={skill.title}
+              className="flex flex-col justify-center items-center my-4 mx-4"
+              href={skill.url}
+            >
+              <Image
+                src={skill.image}
+                alt={`${skill.title} icon`}
+                width="50"
+                height="50"
+              />
+              <span>{skill.title}</span>
+            </Link>
+          ))}
         </TabsContent>
       </Tabs>
     </section>
