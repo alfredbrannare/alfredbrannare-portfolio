@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import {
   Button,
   Sheet,
@@ -6,19 +5,13 @@ import {
   SheetTrigger,
   DialogTitle,
 } from '../ui';
-import { HomeIcon, MenuIcon } from 'lucide-react';
+import { MenuIcon } from 'lucide-react';
 import NavBar from './NavBar';
 
 const Header = () => {
   return (
     <header className="flex flex-col px-4 py-4 bg-primary">
-      <section className="flex flex-row justify-between items-center px-4 py-4 bg-primary">
-        <Link
-          href="/"
-          className="text-stone-100 hover:text-amber-400 transition duration-200"
-        >
-          <HomeIcon />
-        </Link>
+      <section className="flex flex-row justify-center items-center px-4 py-4 bg-primary">
         <h1 className="text-amber-500 font-semibold text-3xl">
           Alfred Brännare
         </h1>
@@ -27,7 +20,7 @@ const Header = () => {
             <Button
               variant="outline"
               size="icon"
-              className="text-stone-100 hover:text-amber-400 bg-primary hover:bg-black transition duration-200 cursor-pointer hover:border-amber-400"
+              className="text-stone-100 hover:text-amber-400 bg-primary fixed bottom-4 right-4 x-50 md:hidden"
               aria-label="Open navigation menu"
             >
               <MenuIcon />

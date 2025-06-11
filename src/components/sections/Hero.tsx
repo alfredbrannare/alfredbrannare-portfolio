@@ -47,7 +47,7 @@ const Hero: FC<HeroCardProps> = ({
             />
           )}
         </div>
-        <Separator className="bg-stone-200 h-1 relative" />
+        <Separator className="bg-stone-200 h-1" />
       </div>
     </section>
   );
