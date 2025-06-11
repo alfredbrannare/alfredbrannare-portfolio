@@ -6,40 +6,26 @@ export default function Home() {
       <Hero
         title="Hello,"
         description={
-          <div>
-            <p>
-              My name is <strong>Alfred</strong>, and I am
-              studying{' '}
-              <strong>
-                Software Development in Java and JavaScript
-              </strong>{' '}
-              at Lernia.
-            </p>
-          </div>
+          <>
+            My name is{' '}
+            <span className="text-amber-500 font-semibold">
+              Alfred
+            </span>
+            , a{' '}
+            <span className="text-amber-500 font-semibold">
+              Software Development
+            </span>{' '}
+            student at Lernia specializing in{' '}
+            <span className="text-amber-500 font-semibold">
+              Java
+            </span>{' '}
+            and{' '}
+            <span className="text-amber-500 font-semibold">
+              JavaScript
+            </span>
+          </>
         }
-        content={
-          <div>
-            <p>
-              As a student of Software Development in Java
-              and JavaScript, I&apos;m building a strong
-              foundation in both frontend and backend
-              technologies.
-            </p>
-            <br />
-            <p>
-              My studies have covered full-stack
-              development, MongoDB, Docker, SQL, TypeScript
-              and more.
-            </p>
-            <br />
-            <p>
-              I&apos;m eager to continue expanding my
-              expertise.
-            </p>
-          </div>
-        }
-        linkText="Learn More About Me"
-        linkHref="/about"
+        content="I'm passionate about building a strong foundation in both frontend and backend technologies to create effective and user-friendly applications. I'm eager to continue expanding my expertise."
         imageUrl="/images/portrait.webp"
         imageAlt="Portrait of Alfred Brännare"
       />
