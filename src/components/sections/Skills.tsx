@@ -16,7 +16,7 @@ import {
 const Skills = () => {
   return (
     <section className="flex flex-col justify-center items-center mt-6 px-4">
-      <h1 className="text-6xl font-bold text-amber-500 mb-6">
+      <h1 className="text-5xl font-bold text-amber-500 mb-6">
         Skills
       </h1>
       <Tabs
