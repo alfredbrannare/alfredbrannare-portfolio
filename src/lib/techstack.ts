@@ -5,13 +5,31 @@ import * as simpleIcons from 'simple-icons';
 export const frontendTechStack = [
   'React',
   'Next.js',
-  'Node.js',
+  'HTML5',
+  'JavaScript',
+  'TypeScript',
+  'Bootstrap',
+  'Sass',
+  'CSS',
   'Tailwind CSS',
+  'MUI',
 ] as const;
 
 export const backendTechStack = [
   'Docker',
+  'Node.js',
+  'MongoDB',
   'PostgreSQL',
+  'JavaScript',
+  'TypeScript',
+  'Mongoose',
+] as const;
+
+export const otherTechStack = [
+  'GitHub',
+  'Git',
+  'Render',
+  'Vercel',
 ] as const;
 
 export const getSkill = (name: string): TechStack => {
@@ -35,3 +53,6 @@ export const frontendSkills: TechStack[] =
   frontendTechStack.map((tech) => getSkill(tech));
 export const backendSkills: TechStack[] =
   backendTechStack.map((tech) => getSkill(tech));
+export const otherSkills: TechStack[] = otherTechStack.map(
+  (tech) => getSkill(tech)
+);
