@@ -1,43 +1,46 @@
-import type { TechStack } from '@/types';
+import type {
+  TechStack,
+  ProcessedTechStack,
+} from '@/types';
 import type { SimpleIcon } from 'simple-icons';
 import * as simpleIcons from 'simple-icons';
 
-export const frontendTechStack = [
-  'React',
-  'Next.js',
-  'HTML5',
-  'JavaScript',
-  'TypeScript',
-  'Bootstrap',
-  'Sass',
-  'CSS',
-  'Tailwind CSS',
-  'MUI',
-  'Vite',
-  'Jest',
-] as const;
-
-export const backendTechStack = [
-  'Docker',
-  'Node.js',
-  'Next.js',
-  'MongoDB',
-  'PostgreSQL',
-  'JavaScript',
-  'TypeScript',
-  'Mongoose',
-  'Express',
-  'Jest',
-] as const;
-
-export const otherTechStack = [
-  'GitHub',
-  'Git',
-  'Render',
-  'Vercel',
-  'Postman',
-  'Figma',
-] as const;
+export const techStack = {
+  frontend: [
+    'React',
+    'Next.js',
+    'HTML5',
+    'JavaScript',
+    'TypeScript',
+    'Bootstrap',
+    'Sass',
+    'CSS',
+    'Tailwind CSS',
+    'MUI',
+    'Vite',
+    'Jest',
+  ],
+  backend: [
+    'Docker',
+    'Node.js',
+    'Next.js',
+    'MongoDB',
+    'PostgreSQL',
+    'JavaScript',
+    'TypeScript',
+    'Mongoose',
+    'Express',
+    'Jest',
+  ],
+  other: [
+    'GitHub',
+    'Git',
+    'Render',
+    'Vercel',
+    'Postman',
+    'Figma',
+  ],
+} as const;
 
 export const getSkill = (name: string): TechStack => {
   const icon = (
@@ -52,14 +55,11 @@ export const getSkill = (name: string): TechStack => {
   return {
     title: icon.title,
     image: `https://cdn.simpleicons.org/${icon.slug}/${icon.hex}`,
-    url: icon.source,
   };
 };
 
-export const frontendSkills: TechStack[] =
-  frontendTechStack.map((tech) => getSkill(tech));
-export const backendSkills: TechStack[] =
-  backendTechStack.map((tech) => getSkill(tech));
-export const otherSkills: TechStack[] = otherTechStack.map(
-  (tech) => getSkill(tech)
-);
+export const processedTechStack: ProcessedTechStack = {
+  frontend: techStack.frontend.map(getSkill),
+  backend: techStack.backend.map(getSkill),
+  other: techStack.other.map(getSkill),
+};

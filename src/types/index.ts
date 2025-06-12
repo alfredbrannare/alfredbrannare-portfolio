@@ -14,5 +14,10 @@ export interface HeroSectionProps {
 export type TechStack = {
   title: string;
   image: string;
-  url: string;
+};
+
+export type ProcessedTechStack = {
+  frontend: TechStack[];
+  backend: TechStack[];
+  other: TechStack[];
 };
