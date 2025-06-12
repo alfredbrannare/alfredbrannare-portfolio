@@ -15,15 +15,15 @@ import {
 
 const Skills = () => {
   return (
-    <section className="flex flex-col justify-center items-center mt-6">
+    <section className="flex flex-col justify-center items-center mt-6 px-4">
       <h1 className="text-5xl font-bold text-amber-500 mb-6">
         Skills
       </h1>
       <Tabs
         defaultValue="frontend"
-        className="w-[400px] justify-center items-center"
+        className="w-full max-w-5xl"
       >
-        <TabsList>
+        <TabsList className="w-full justify-center">
           <TabsTrigger value="frontend">
             Frontend
           </TabsTrigger>
@@ -32,20 +32,21 @@ const Skills = () => {
         </TabsList>
         <TabsContent
           value="frontend"
-          className="flex flex-row"
+          className="flex flex-row overflow-x-auto overflow-y-hidden justify-start lg:justify-center gap-4 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
         >
           {frontendSkills.map((skill) => (
             <div
               key={skill.title}
-              className="flex flex-col justify-center items-center my-4 mx-4 text-center min-h-[120px]"
+              className="flex flex-col justify-top items-center text-center flex-shrink-0 min-w-[80px]"
             >
               <Image
                 src={skill.image}
                 alt={`${skill.title} icon`}
                 width="50"
                 height="50"
+                className="min-h-[50px] min-w-[50px] object-contain mb-2"
               />
-              <span className="bottom-0">
+              <span className="text-sm whitespace-nowrap">
                 {skill.title}
               </span>
             </div>
@@ -53,39 +54,45 @@ const Skills = () => {
         </TabsContent>
         <TabsContent
           value="backend"
-          className="flex flex-row"
+          className="flex flex-row overflow-x-auto overflow-y-hidden justify-start lg:justify-center gap-4 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
         >
           {backendSkills.map((skill) => (
             <div
               key={skill.title}
-              className="flex flex-col justify-center items-center my-4 mx-4 text-center"
+              className="flex flex-col justify-top items-center text-center flex-shrink-0 min-w-[80px]"
             >
               <Image
                 src={skill.image}
                 alt={`${skill.title} icon`}
                 width="50"
                 height="50"
+                className="min-h-[50px] min-w-[50px] object-contain mb-2"
               />
-              <span>{skill.title}</span>
+              <span className="text-sm whitespace-nowrap">
+                {skill.title}
+              </span>
             </div>
           ))}
         </TabsContent>
         <TabsContent
           value="other"
-          className="flex flex-row"
+          className="flex flex-row overflow-x-auto overflow-y-hidden justify-start lg:justify-center gap-4 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
         >
           {otherSkills.map((skill) => (
             <div
               key={skill.title}
-              className="flex flex-col justify-center items-center my-4 mx-4 text-center"
+              className="flex flex-col justify-top items-center text-center flex-shrink-0 min-w-[80px]"
             >
               <Image
                 src={skill.image}
                 alt={`${skill.title} icon`}
                 width="50"
                 height="50"
+                className="min-h-[50px] min-w-[50px] object-contain mb-2"
               />
-              <span>{skill.title}</span>
+              <span className="text-sm whitespace-nowrap">
+                {skill.title}
+              </span>
             </div>
           ))}
         </TabsContent>
