@@ -16,14 +16,14 @@ import {
 const Skills = () => {
   return (
     <section className="flex flex-col justify-center items-center mt-6 px-4">
-      <h1 className="text-5xl font-bold text-amber-500 mb-6">
+      <h1 className="text-6xl font-bold text-amber-500 mb-6">
         Skills
       </h1>
       <Tabs
         defaultValue="frontend"
-        className="w-full max-w-5xl"
+        className="w-full max-w-6xl"
       >
-        <TabsList className="w-full justify-center">
+        <TabsList className="md:w-md lg:w-xl mx-auto flex flex-row justify-center items-center text-center">
           <TabsTrigger value="frontend">
             Frontend
           </TabsTrigger>
@@ -32,7 +32,7 @@ const Skills = () => {
         </TabsList>
         <TabsContent
           value="frontend"
-          className="flex flex-row overflow-x-auto overflow-y-hidden justify-start lg:justify-center gap-4 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
+          className="flex flex-row overflow-x-auto overflow-y-hidden justify-start lg:justify-center gap-3 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
         >
           {frontendSkills.map((skill) => (
             <div
@@ -54,7 +54,7 @@ const Skills = () => {
         </TabsContent>
         <TabsContent
           value="backend"
-          className="flex flex-row overflow-x-auto overflow-y-hidden justify-start lg:justify-center gap-4 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
+          className="flex flex-row overflow-x-auto overflow-y-hidden justify-start lg:justify-center gap-3 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
         >
           {backendSkills.map((skill) => (
             <div
@@ -76,7 +76,7 @@ const Skills = () => {
         </TabsContent>
         <TabsContent
           value="other"
-          className="flex flex-row overflow-x-auto overflow-y-hidden justify-start lg:justify-center gap-4 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
+          className="flex flex-row overflow-x-auto overflow-y-hidden justify-start lg:justify-center gap-3 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
         >
           {otherSkills.map((skill) => (
             <div

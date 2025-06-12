@@ -13,16 +13,21 @@ export const frontendTechStack = [
   'CSS',
   'Tailwind CSS',
   'MUI',
+  'Vite',
+  'Jest',
 ] as const;
 
 export const backendTechStack = [
   'Docker',
   'Node.js',
+  'Next.js',
   'MongoDB',
   'PostgreSQL',
   'JavaScript',
   'TypeScript',
   'Mongoose',
+  'Express',
+  'Jest',
 ] as const;
 
 export const otherTechStack = [
@@ -30,6 +35,8 @@ export const otherTechStack = [
   'Git',
   'Render',
   'Vercel',
+  'Postman',
+  'Figma',
 ] as const;
 
 export const getSkill = (name: string): TechStack => {
