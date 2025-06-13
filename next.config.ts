@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.simpleicons.org',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        pathname: '/**',
+      },
     ],
     dangerouslyAllowSVG: true,
   },
