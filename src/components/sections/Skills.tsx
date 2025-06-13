@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import {
+  Separator,
   Tabs,
   TabsContent,
   TabsList,
@@ -57,6 +58,7 @@ const Skills = () => {
           </TabsContent>
         ))}
       </Tabs>
+      <Separator className="bg-stone-200 h-1" />
     </section>
   );
 };

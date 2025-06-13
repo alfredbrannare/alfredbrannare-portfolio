@@ -6,3 +6,4 @@ export * from './card';
 export * from './avatar';
 export * from './separator';
 export * from './tabs';
+export * from './carousel';
