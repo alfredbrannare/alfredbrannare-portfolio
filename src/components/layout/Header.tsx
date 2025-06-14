@@ -20,7 +20,7 @@ const Header = () => {
             <Button
               variant="outline"
               size="icon"
-              className="text-stone-100 hover:text-amber-400 bg-primary fixed bottom-4 right-4 x-50 md:hidden"
+              className="text-stone-100 hover:text-amber-400 bg-primary fixed bottom-4 right-4 x-50 md:hidden z-99"
               aria-label="Open navigation menu"
             >
               <MenuIcon />
