@@ -2,6 +2,7 @@ import {
   Hero,
   Skills,
   Projects,
+  Contact,
 } from '@/components/sections';
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <Skills />
       <Projects />
+      <Contact />
     </main>
   );
 }

@@ -10,7 +10,7 @@ export interface HeroSectionProps {
   imageAlt?: string;
 }
 
-//Techstack
+//Skills
 export type TechStack = {
   title: string;
   image: string;
@@ -22,6 +22,7 @@ export type ProcessedTechStack = {
   other: TechStack[];
 };
 
+//Projects
 export type Project = {
   id: number;
   title: string;
@@ -38,3 +39,13 @@ export type ProcessedProject = Omit<Project, 'stack'> & {
 };
 
 export type ProcessedProjects = ProcessedProject[];
+
+//Contact
+export type ContactItem = {
+  id: number;
+  title: string;
+  image?: string;
+  icon?: React.ElementType;
+  href: string;
+  type: string;
+};

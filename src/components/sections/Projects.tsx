@@ -13,6 +13,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
+  Separator,
 } from '../ui';
 import Link from 'next/link';
 
@@ -128,6 +129,7 @@ const Projects = () => {
           ))}
         </CarouselContent>
       </Carousel>
+      <Separator className="bg-stone-200 h-1 my-6" />
     </section>
   );
 };

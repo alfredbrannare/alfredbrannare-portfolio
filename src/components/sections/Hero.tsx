@@ -44,7 +44,7 @@ const Hero: FC = () => {
           </div>
 
           <Image
-            src="/images/portrait.webp"
+            src="/images/hero/portrait.webp"
             width={450}
             height={450}
             alt="Portrait of Alfred Brännare"
