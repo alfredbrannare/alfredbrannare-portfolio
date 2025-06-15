@@ -61,6 +61,25 @@ const projects = [
       'MongoDB',
     ],
   },
+  {
+    id: 6,
+    title: 'Portfolio',
+    date: '2025-06-15',
+    deployLink:
+      'https://alfredbrannare-portfolio.vercel.app/',
+    repoLink:
+      'https://github.com/alfredbrannare/alfredbrannare-portfolio',
+    image: '/images/projects/Portfolio.webp',
+    description:
+      'This personal portfolio was developed using Next.js and styled with Tailwind CSS and Shadcn/ui. It serves as a dynamic showcase for my projects and ongoing development journey as I progress through my education.',
+    stack: [
+      'React',
+      'Tailwind CSS',
+      'Shadcn/ui',
+      'Next.js',
+      'Simple Icons',
+    ],
+  },
 ];
 
 export { projects };
