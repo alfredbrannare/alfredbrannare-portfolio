@@ -61,7 +61,7 @@ const Projects = () => {
                     <Image
                       src={project.image}
                       alt={`Image of ${project.title}`}
-                      className="w-full h-auto object-cover rounded-lg"
+                      className="w-full h-48 object-cover rounded-lg cursor-pointer shadow-md"
                       width="600"
                       height="400"
                     />
@@ -84,7 +84,7 @@ const Projects = () => {
                   <Image
                     src={project.image}
                     alt={`Image of ${project.title}`}
-                    className="w-full h-auto object-cover rounded-lg mt-4"
+                    className="w-full h-48 object-cover rounded-lg mt-4 shadow-md"
                     width="600"
                     height="400"
                   />
