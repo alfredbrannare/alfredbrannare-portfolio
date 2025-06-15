@@ -18,7 +18,8 @@ const Contact = () => {
       <h1 className="text-5xl font-bold text-amber-500 mb-6 text-shadow-[1px_1px_0_rgba(0,0,0,0.7)]">
         Contact
       </h1>
-      <div className="flex flex-row justify-top items-center text-center flex-shrink-0 min-w-[80px]">
+
+      <div className="flex flex-wrap justify-center items-center text-center gap-4">
         {socialContact.map((item) => (
           <div key={item.id}>
             {item.image && (
@@ -28,6 +29,7 @@ const Contact = () => {
                   alt={`${item.title} logo`}
                   width="200"
                   height="100"
+                  className="object-contain"
                 />
               </Link>
             )}
@@ -43,19 +45,17 @@ const Contact = () => {
           </div>
         ))}
       </div>
-      <div className="flex flex-row justify-top items-center text-center flex-shrink-0 min-w-[80px] mt-3">
+
+      <div className="flex flex-wrap justify-center items-center text-center gap-6 mt-4">
         {directContact.map((item) => (
-          <div key={item.id} className="mr-5">
-            {item.icon && (
-              <Link
-                href={item.href}
-                className="flex flex-col items-center justify-center"
-              >
-                <item.icon className="w-6 h-6" />
-                <span>{item.title}</span>
-              </Link>
-            )}
-          </div>
+          <Link
+            key={item.id}
+            href={item.href}
+            className="flex flex-col items-center justify-center"
+          >
+            <item.icon className="w-6 h-6" />
+            <span>{item.title}</span>
+          </Link>
         ))}
       </div>
     </section>
