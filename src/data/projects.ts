@@ -7,7 +7,7 @@ const projects = [
       'https://alfredbrannare.github.io/ToDoList-v5/',
     repoLink:
       'https://github.com/alfredbrannare/ToDoList-v5',
-    image: '/images/ToDoList.webp',
+    image: '/images/TodoList.webp',
     description:
       'A solo assignment replicating a tutorial video, focusing on HTML, CSS, and basic JavaScript fundamentals.',
     stack: ['HTML5', 'CSS'],

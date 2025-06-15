@@ -20,7 +20,7 @@ const NavBar = () => {
           key={link.href}
           asChild
           variant="link"
-          className="text-stone-100 hover:text-amber-400 transition duration-200"
+          className="text-stone-100 hover:text-amber-500 transition duration-200"
         >
           <a href={link.href}>{link.label}</a>
         </Button>

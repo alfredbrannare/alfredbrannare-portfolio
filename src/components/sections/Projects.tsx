@@ -47,10 +47,10 @@ const Projects = () => {
                 <span>{project.date}</span>
                 <div className="relative flex items-center justify-center w-full">
                   {index < sortedProjects.length - 1 && (
-                    <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 w-[calc(100%+1.5rem)] h-0.5 bg-amber-400 z-0" />
+                    <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 w-[calc(100%+1.5rem)] h-0.5 bg-amber-500 z-0" />
                   )}
                   <span
-                    className="bg-amber-400 w-5 h-5 rounded-full block my-6"
+                    className="bg-amber-500 w-5 h-5 rounded-full block my-6"
                     aria-hidden="true"
                   />
                 </div>
