@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Button } from '../ui';
 
 interface NavLink {
@@ -7,10 +6,10 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/contact', label: 'Contact' },
+  { href: '#', label: 'Home' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 const NavBar = () => {
@@ -23,7 +22,7 @@ const NavBar = () => {
           variant="link"
           className="text-stone-100 hover:text-amber-400 transition duration-200"
         >
-          <Link href={link.href}>{link.label}</Link>
+          <a href={link.href}>{link.label}</a>
         </Button>
       ))}
     </nav>

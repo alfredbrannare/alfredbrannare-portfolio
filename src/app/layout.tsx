@@ -21,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>
+      <body
+        className={`${poppins.className} antialiased scroll-smooth`}
+      >
         <Header />
         <div className="max-w-[1280px] mx-auto p-6">
           {children}

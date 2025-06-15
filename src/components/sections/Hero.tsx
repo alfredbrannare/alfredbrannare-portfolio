@@ -4,7 +4,7 @@ import { Separator } from '@/components/ui/separator';
 
 const Hero: FC = () => {
   return (
-    <section className="flex justify-center">
+    <section className="flex justify-center" id="hero">
       <div>
         <div className="flex flex-col text-center items-center lg:flex-row lg:text-start">
           <div className="flex-1 flex flex-col justify-center space-y-4 p-4">
