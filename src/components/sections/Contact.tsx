@@ -53,7 +53,7 @@ const Contact = () => {
             href={item.href}
             className="flex flex-col items-center justify-center"
           >
-            <item.icon className="w-6 h-6" />
+            {item.icon && <item.icon className="w-6 h-6" />}
             <span>{item.title}</span>
           </Link>
         ))}
