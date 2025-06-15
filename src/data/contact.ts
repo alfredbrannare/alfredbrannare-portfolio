@@ -11,7 +11,7 @@ const contact = [
   {
     id: 2,
     title: 'GitHub',
-    image: '/images/contact/Github_Logo.webp',
+    image: '/images/contact/GitHub_Logo.webp',
     href: 'https://github.com/alfredbrannare',
     type: 'social',
   },
