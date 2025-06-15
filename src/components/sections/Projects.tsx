@@ -1,13 +1,18 @@
 import Image from 'next/image';
-import { projects } from '@/data/projects';
+import { processedProjects } from '@/utils/getSkill';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
 } from '../ui';
 
 const Projects = () => {
-  const sortedProjects = [...projects].sort(
+  const sortedProjects = [...processedProjects].sort(
     (a, b) =>
       new Date(b.date).getTime() -
       new Date(a.date).getTime()
@@ -45,13 +50,47 @@ const Projects = () => {
                   {project.title}
                 </span>
               </div>
-              <Image
-                src={project.image}
-                alt={`Image of ${project.title}`}
-                className="w-full h-auto object-cover rounded-lg"
-                width="600"
-                height="400"
-              />
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="w-full">
+                    <Image
+                      src={project.image}
+                      alt={`Image of ${project.title}`}
+                      className="w-full h-auto object-cover rounded-lg"
+                      width="600"
+                      height="400"
+                    />
+                  </button>
+                </DialogTrigger>
+
+                <DialogContent className="max-w-xl">
+                  <DialogTitle className="text-xl font-bold">
+                    {project.title}
+                  </DialogTitle>
+                  <Image
+                    src={project.image}
+                    alt={`Image of ${project.title}`}
+                    className="w-full h-auto object-cover rounded-lg mt-4"
+                    width="600"
+                    height="400"
+                  />
+                  <div className="flex flex-row mt-2">
+                    {project.stack.map((skill, index) => (
+                      <Image
+                        key={index}
+                        src={skill.image}
+                        alt={`${skill.title} icon`}
+                        width="20"
+                        height="20"
+                        className="min-h-[20px] min-w-[20px] object-contain mb-2 mr-1"
+                      />
+                    ))}
+                  </div>
+                  <DialogDescription className="mt-2 text-sm">
+                    {project.description}
+                  </DialogDescription>
+                </DialogContent>
+              </Dialog>
             </CarouselItem>
           ))}
         </CarouselContent>

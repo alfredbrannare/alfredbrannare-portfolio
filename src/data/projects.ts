@@ -6,17 +6,17 @@ const projects = [
     link: 'https://alfredbrannare.github.io/ToDoList-v5/',
     image: 'https://placehold.co/600x400',
     description:
-      'First major project. Built with HTML and CSS',
+      'A solo assignment replicating a tutorial video, focusing on HTML, CSS, and basic JavaScript fundamentals.',
     stack: ['HTML5', 'CSS'],
   },
   {
     id: 2,
     title: 'ESC Hacker Escape Rooms',
     date: '2024-10-27',
-    link: 'https://alfredbrannare.github.io/ESC-Hacker-Escape-Rooms/',
+    link: 'https://paajt.github.io/ESC-Hacker-Escape-Rooms/',
     image: 'https://placehold.co/600x400',
     description:
-      'Second project milestone. Built with HTML and SCSS',
+      'Started as an individual assignment where everyone implemented the same Figma design. Later, we formed groups and selected one team member’s repository to collaboratively expand, focusing on REST API integration and advanced styling with SCSS.',
     stack: ['HTML5', 'Sass'],
   },
   {
@@ -26,7 +26,7 @@ const projects = [
     link: 'https://wordle-7dsq.onrender.com/',
     image: 'https://placehold.co/600x400',
     description:
-      'Third project achievement. Built with React, Tailwind CSS, EJS and MongoDB',
+      'A solo project where I developed a Wordle clone using React, Tailwind CSS, EJS templates, and MongoDB for backend data management.',
     stack: [
       'React',
       'Tailwind CSS',
@@ -43,7 +43,7 @@ const projects = [
     link: 'https://kino-nextjs-app.onrender.com/',
     image: 'https://placehold.co/600x400',
     description:
-      'Foruth project achievement. Built with Next.js, React, Tailwind CSS and MongoDB',
+      'A collaborative group project rebuilding a previous app using Next.js and Tailwind CSS, focusing on modern React practices and MongoDB integration.',
     stack: [
       'React',
       'Tailwind CSS',
