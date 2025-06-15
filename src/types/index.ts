@@ -21,3 +21,19 @@ export type ProcessedTechStack = {
   backend: TechStack[];
   other: TechStack[];
 };
+
+export type Project = {
+  id: number;
+  title: string;
+  date: string;
+  link: string;
+  image: string;
+  description: string;
+  stack: string[];
+};
+
+export type ProcessedProject = Omit<Project, 'stack'> & {
+  stack: TechStack[];
+};
+
+export type ProcessedProjects = ProcessedProject[];

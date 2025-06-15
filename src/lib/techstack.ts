@@ -1,7 +1,9 @@
 import type {
   TechStack,
   ProcessedTechStack,
+  ProcessedProjects,
 } from '@/types';
+import { projects } from '@/data/projects';
 import type { SimpleIcon } from 'simple-icons';
 import * as simpleIcons from 'simple-icons';
 
@@ -63,3 +65,9 @@ export const processedTechStack: ProcessedTechStack = {
   backend: techStack.backend.map(getSkill),
   other: techStack.other.map(getSkill),
 };
+
+export const processedProjects: ProcessedProjects =
+  projects.map((project) => ({
+    ...project,
+    stack: project.stack.map(getSkill),
+  }));
