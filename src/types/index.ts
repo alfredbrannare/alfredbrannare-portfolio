@@ -26,7 +26,8 @@ export type Project = {
   id: number;
   title: string;
   date: string;
-  link: string;
+  deployLink: string;
+  repoLink: string;
   image: string;
   description: string;
   stack: string[];

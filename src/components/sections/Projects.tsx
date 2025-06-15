@@ -9,7 +9,9 @@ import {
   DialogDescription,
   DialogTitle,
   DialogTrigger,
+  Button,
 } from '../ui';
+import Link from 'next/link';
 
 const Projects = () => {
   const sortedProjects = [...processedProjects].sort(
@@ -46,7 +48,7 @@ const Projects = () => {
                     aria-hidden="true"
                   />
                 </div>
-                <span className="mb-2 items-center text-xs md:text-xl">
+                <span className="mb-2 items-center text-xs md:text-xl font-semibold">
                   {project.title}
                 </span>
               </div>
@@ -62,11 +64,20 @@ const Projects = () => {
                     />
                   </button>
                 </DialogTrigger>
-
                 <DialogContent className="max-w-xl">
                   <DialogTitle className="text-xl font-bold">
                     {project.title}
                   </DialogTitle>
+                  <Button
+                    asChild
+                    size="none"
+                    variant="link"
+                    className="justify-start"
+                  >
+                    <Link href={project.repoLink}>
+                      <span>Github Link</span>
+                    </Link>
+                  </Button>
                   <Image
                     src={project.image}
                     alt={`Image of ${project.title}`}
@@ -89,6 +100,15 @@ const Projects = () => {
                   <DialogDescription className="mt-2 text-sm">
                     {project.description}
                   </DialogDescription>
+                  <Button asChild size="sm">
+                    <Link
+                      href={project.deployLink}
+                      className="mt-5 text-center px-6 py-6 block"
+                    >
+                      <span>Visit</span>
+                      <span>{project.title}</span>
+                    </Link>
+                  </Button>
                 </DialogContent>
               </Dialog>
             </CarouselItem>
