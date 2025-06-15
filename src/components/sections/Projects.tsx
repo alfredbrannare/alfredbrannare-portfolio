@@ -10,6 +10,9 @@ import {
   DialogTitle,
   DialogTrigger,
   Button,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '../ui';
 import Link from 'next/link';
 
@@ -87,14 +90,21 @@ const Projects = () => {
                   />
                   <div className="flex flex-row mt-2">
                     {project.stack.map((skill, index) => (
-                      <Image
-                        key={index}
-                        src={skill.image}
-                        alt={`${skill.title} icon`}
-                        width="20"
-                        height="20"
-                        className="min-h-[20px] min-w-[20px] object-contain mb-2 mr-1"
-                      />
+                      <Tooltip key={index}>
+                        <TooltipTrigger>
+                          <Image
+                            key={index}
+                            src={skill.image}
+                            alt={`${skill.title} icon`}
+                            width="20"
+                            height="20"
+                            className="min-h-[20px] min-w-[20px] object-contain mb-2 mr-1"
+                          />
+                          <TooltipContent>
+                            {skill.title}
+                          </TooltipContent>
+                        </TooltipTrigger>
+                      </Tooltip>
                     ))}
                   </div>
                   <DialogDescription className="mt-2 text-sm">
