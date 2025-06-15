@@ -19,6 +19,17 @@ const Contact = () => {
         Contact
       </h1>
 
+      <div
+        className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative max-w-xl"
+        role="alert"
+      >
+        <p className="block sm:inline">
+          I am currently balancing study and work, so I
+          might not be able to take on every project. Please
+          feel free to reach out for more details.
+        </p>
+      </div>
+
       <div className="flex flex-wrap justify-center items-center text-center gap-4">
         {socialContact.map((item) => (
           <div key={item.id}>
