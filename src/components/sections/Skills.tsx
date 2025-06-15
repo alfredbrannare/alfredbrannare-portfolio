@@ -8,7 +8,7 @@ import {
   TabsTrigger,
 } from '../ui';
 
-import { processedTechStack } from '@/lib/techstack';
+import { processedTechStack } from '@/utils/getSkill';
 
 const Skills = () => {
   const skillCategories = Object.keys(

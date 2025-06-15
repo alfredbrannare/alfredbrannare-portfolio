@@ -4,45 +4,9 @@ import type {
   ProcessedProjects,
 } from '@/types';
 import { projects } from '@/data/projects';
+import { techStack } from '@/data/techstack';
 import type { SimpleIcon } from 'simple-icons';
 import * as simpleIcons from 'simple-icons';
-
-export const techStack = {
-  frontend: [
-    'React',
-    'Next.js',
-    'HTML5',
-    'JavaScript',
-    'TypeScript',
-    'Bootstrap',
-    'Sass',
-    'CSS',
-    'Tailwind CSS',
-    'MUI',
-    'Vite',
-    'Jest',
-  ],
-  backend: [
-    'Docker',
-    'Node.js',
-    'Next.js',
-    'MongoDB',
-    'PostgreSQL',
-    'JavaScript',
-    'TypeScript',
-    'Mongoose',
-    'Express',
-    'Jest',
-  ],
-  other: [
-    'GitHub',
-    'Git',
-    'Render',
-    'Vercel',
-    'Postman',
-    'Figma',
-  ],
-} as const;
 
 export const getSkill = (name: string): TechStack => {
   const icon = (
