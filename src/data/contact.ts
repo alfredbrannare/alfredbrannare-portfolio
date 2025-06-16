@@ -1,26 +1,20 @@
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Github, Linkedin } from 'lucide-react';
+import {} from 'lucide-react';
 
 const contact = [
   {
     id: 1,
     title: 'LinkedIn',
-    image: '/images/contact/LI-Logo.webp',
+    icon: Linkedin,
     href: 'https://www.linkedin.com/in/alfred-br%C3%A4nnare-308b2a1b9/',
     type: 'social',
   },
   {
     id: 2,
     title: 'GitHub',
-    image: '/images/contact/GitHub_Logo.webp',
+    icon: Github,
     href: 'https://github.com/alfredbrannare',
     type: 'social',
-  },
-  {
-    id: 3,
-    title: '+46705484632',
-    icon: Phone,
-    href: 'tel:+46705484632',
-    type: 'direct',
   },
   {
     id: 4,
