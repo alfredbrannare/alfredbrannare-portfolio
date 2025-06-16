@@ -7,6 +7,7 @@ import {
 } from '../ui';
 import { MenuIcon } from 'lucide-react';
 import NavBar from './NavBar';
+import { navLinks } from './NavBar';
 
 const Header = () => {
   return (
@@ -28,11 +29,23 @@ const Header = () => {
               </Button>
             </SheetTrigger>
 
-            <SheetContent side="left" className="py-4 px-4">
-              <DialogTitle className="text-center">
-                Side Menu
+            <SheetContent
+              side="bottom"
+              className="py-4 px-4 z-99"
+            >
+              <DialogTitle className="text-center sr-only">
+                Navigation links
               </DialogTitle>
-              <h2>Test</h2>
+              {navLinks.map((link) => (
+                <Button
+                  key={link.href}
+                  asChild
+                  variant="link"
+                  className="text-black hover:text-amber-500 transition duration-200"
+                >
+                  <a href={link.href}>{link.label}</a>
+                </Button>
+              ))}
             </SheetContent>
           </Sheet>
         </section>

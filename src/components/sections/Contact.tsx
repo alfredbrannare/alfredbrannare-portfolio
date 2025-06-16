@@ -1,5 +1,4 @@
 import { contact } from '@/data/contact';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const Contact = () => {

@@ -30,3 +30,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
+export { navLinks };
