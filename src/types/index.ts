@@ -11,6 +11,10 @@ export interface HeroSectionProps {
 }
 
 //Skills
+export interface Skill {
+  name: string;
+}
+
 export type TechStack = {
   title: string;
   image: string;
