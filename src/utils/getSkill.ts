@@ -4,7 +4,7 @@ import type {
   ProcessedProjects,
 } from '@/types';
 import { projects } from '@/data/projects';
-import { techStack } from '@/data/techstack';
+import { getDbSkills } from '@/lib/db/skills';
 import type { SimpleIcon } from 'simple-icons';
 import * as simpleIcons from 'simple-icons';
 
@@ -24,11 +24,20 @@ export const getSkill = (name: string): TechStack => {
   };
 };
 
-export const processedTechStack: ProcessedTechStack = {
-  frontend: techStack.frontend.map(getSkill),
-  backend: techStack.backend.map(getSkill),
-  other: techStack.other.map(getSkill),
-};
+export async function getProcessedTechStack(): Promise<ProcessedTechStack> {
+  const skills = await getDbSkills();
+  return {
+    frontend: skills
+      .filter((s) => s.type === 'frontend')
+      .map((s) => getSkill(s.name)),
+    backend: skills
+      .filter((s) => s.type === 'backend')
+      .map((s) => getSkill(s.name)),
+    other: skills
+      .filter((s) => s.type === 'other')
+      .map((s) => getSkill(s.name)),
+  };
+}
 
 export const processedProjects: ProcessedProjects =
   projects.map((project) => ({
