@@ -7,7 +7,7 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { href: '#', label: 'Home' },
-  { href: '#skills', label: 'Skills' },
+  { href: '#techstack', label: 'Techstack' },
   { href: '#projects', label: 'Projects' },
   { href: '#contact', label: 'Contact' },
 ];
