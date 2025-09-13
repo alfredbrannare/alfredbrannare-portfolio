@@ -14,6 +14,7 @@ export interface HeroSectionProps {
 export interface Skill {
   name: string;
   type: 'frontend' | 'backend' | 'other';
+  iconUrl?: string;
 }
 
 export type TechStack = {
