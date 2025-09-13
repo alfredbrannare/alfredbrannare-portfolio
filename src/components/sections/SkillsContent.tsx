@@ -47,7 +47,7 @@ export const SkillsContent = ({
           <TabsContent
             key={category}
             value={category}
-            className="flex flex-row overflow-x-auto overflow-y-hidden justify-start lg:justify-center gap-3 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
+            className="flex flex-row sm:flex-wrap overflow-x-auto overflow-y-hidden justify-start sm:justify-center gap-3 p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
           >
             {processedTechStack[category].map((skill) => (
               <div
