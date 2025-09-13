@@ -8,7 +8,19 @@ import { getDbSkills } from '@/lib/db/skills';
 import type { SimpleIcon } from 'simple-icons';
 import * as simpleIcons from 'simple-icons';
 
+const ICON_OVERRIDES: Record<string, string> = {
+  java: 'https://icon.icepanel.io/Technology/svg/Java.svg',
+};
+
 export const getSkill = (name: string): TechStack => {
+  const override = ICON_OVERRIDES[name.toLowerCase()];
+  if (override) {
+    return {
+      title: name,
+      image: override,
+    };
+  }
+
   const icon = (
     Object.values(simpleIcons) as SimpleIcon[]
   ).find(
