@@ -40,6 +40,13 @@ const Hero: FC = () => {
                 I&apos;m eager to continue expanding my
                 expertise.
               </p>
+              <a
+                href="/documents/CV_Alfred_Brännare_(Swe).pdf"
+                download
+                className="mt-4 inline-block bg-amber-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-amber-600 transition"
+              >
+                Download CV
+              </a>
             </div>
           </div>
 
