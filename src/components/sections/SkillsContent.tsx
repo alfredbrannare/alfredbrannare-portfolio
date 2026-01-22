@@ -60,6 +60,7 @@ export const SkillsContent = ({
                   width="50"
                   height="50"
                   className="min-h-[50px] min-w-[50px] object-contain mb-2"
+                  unoptimized
                 />
                 <span className="text-sm whitespace-nowrap">
                   {skill.title}
