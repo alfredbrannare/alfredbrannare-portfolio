@@ -6,17 +6,14 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn.simpleicons.org',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'icon.icepanel.io',
-        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
       },
     ],
     dangerouslyAllowSVG: true,
