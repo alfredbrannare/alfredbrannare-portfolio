@@ -1,9 +1,10 @@
-package se.alfredbrannare.backend.entity;
+package se.alfredbrannare.backend.project.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import se.alfredbrannare.backend.skill.entity.Skill;
 
 import java.time.Instant;
 import java.time.LocalDate;
