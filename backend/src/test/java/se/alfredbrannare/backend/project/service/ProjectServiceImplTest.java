@@ -5,15 +5,22 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import se.alfredbrannare.backend.project.dto.request.CreateProjectRequest;
 import se.alfredbrannare.backend.project.entity.Project;
 import se.alfredbrannare.backend.project.exception.ProjectNotFoundException;
+import se.alfredbrannare.backend.project.mapper.ProjectMapper;
 import se.alfredbrannare.backend.project.repository.ProjectRepository;
+import se.alfredbrannare.backend.skill.entity.Skill;
+import se.alfredbrannare.backend.skill.service.SkillService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -24,6 +31,12 @@ public class ProjectServiceImplTest {
 
     @InjectMocks
     private ProjectServiceImpl projectService;
+
+    @Mock
+    private ProjectMapper projectMapper;
+
+    @Mock
+    private SkillService skillService;
 
     @Test
     void getAllProjects_returnsAllFromRepository() {
@@ -62,20 +75,34 @@ public class ProjectServiceImplTest {
     }
 
     @Test
-    void saveProject_returnsSavedProject() {
-        Project input = new Project();
-        input.setTitle("Project 1");
+    void createProject_savesProjectWithResolvedSkills() {
+        CreateProjectRequest request = new CreateProjectRequest(
+                "Project 1",
+                LocalDate.now(),
+                "desc",
+                null,
+                null,
+                null,
+                List.of(1L, 2L)
+        );
+
+
+        Skill skill1 = new Skill();
+        skill1.setId(1L);
+        Skill skill2 = new Skill();
+        skill2.setId(2L);
 
         Project saved = new Project();
-        saved.setId(1L);
-        saved.setTitle("Project 1");
+        saved.setStack(List.of(skill1, skill2));
 
-        when(projectRepository.save(input)).thenReturn(saved);
+        when(projectMapper.toRequest(request)).thenReturn(new Project());
+        when(skillService.getSkillsById(List.of(1L, 2L))).thenReturn(List.of(skill1, skill2));
+        when(projectRepository.save(any(Project.class))).thenReturn(saved);
 
-        Project result = projectService.saveProject(input);
+        Project result = projectService.createProject(request);
 
-        assertThat(result.getId()).isEqualTo(1L);
-        assertThat(result.getTitle()).isEqualTo("Project 1");
+        assertThat(result.getStack()).containsExactlyInAnyOrder(skill1, skill2);
+        verify(projectRepository).save(any(Project.class));
     }
 
 }

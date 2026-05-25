@@ -14,7 +14,7 @@ public record CreateProjectRequest(
         LocalDate date,
 
         @Size(max = 5000)
-        String descrption,
+        String description,
 
         @Size(max = 500)
         String deployLink,
