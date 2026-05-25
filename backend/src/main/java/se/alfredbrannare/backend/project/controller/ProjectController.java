@@ -1,11 +1,12 @@
 package se.alfredbrannare.backend.project.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import se.alfredbrannare.backend.project.dto.request.CreateProjectRequest;
 import se.alfredbrannare.backend.project.dto.response.ProjectResponse;
+import se.alfredbrannare.backend.project.entity.Project;
 import se.alfredbrannare.backend.project.mapper.ProjectMapper;
 import se.alfredbrannare.backend.project.service.ProjectService;
 
@@ -22,6 +23,12 @@ public class ProjectController {
     public ResponseEntity<List<ProjectResponse>> getAllProjects() {
         List<ProjectResponse> projects = projectMapper.toResponseList(projectService.getAllProjects());
         return ResponseEntity.ok(projects);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProjectResponse> createProject(@Valid @RequestBody CreateProjectRequest request) {
+        Project saved = projectService.saveProject(projectMapper.toRequest(request));
+        return ResponseEntity.ok(projectMapper.toResponse(saved));
     }
 
 }
