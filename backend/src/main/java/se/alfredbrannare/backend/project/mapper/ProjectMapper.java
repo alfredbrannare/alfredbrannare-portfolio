@@ -12,5 +12,5 @@ import java.util.List;
 public interface ProjectMapper {
     ProjectResponse toResponse(Project project);
     List<ProjectResponse> toResponseList(List<Project> projects);
-    Project toRequest(CreateProjectRequest response);
+    Project toEntity(CreateProjectRequest request);
 }

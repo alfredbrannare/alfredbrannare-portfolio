@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import se.alfredbrannare.backend.project.dto.request.CreateProjectRequest;
+import se.alfredbrannare.backend.project.dto.request.UpdateProjectRequest;
 import se.alfredbrannare.backend.project.entity.Project;
 import se.alfredbrannare.backend.project.exception.ProjectNotFoundException;
 import se.alfredbrannare.backend.project.mapper.ProjectMapper;
@@ -76,16 +77,7 @@ public class ProjectServiceImplTest {
 
     @Test
     void createProject_savesProjectWithResolvedSkills() {
-        CreateProjectRequest request = new CreateProjectRequest(
-                "Project 1",
-                LocalDate.now(),
-                "desc",
-                null,
-                null,
-                null,
-                List.of(1L, 2L)
-        );
-
+        Project project = new Project();
 
         Skill skill1 = new Skill();
         skill1.setId(1L);
@@ -95,14 +87,13 @@ public class ProjectServiceImplTest {
         Project saved = new Project();
         saved.setStack(List.of(skill1, skill2));
 
-        when(projectMapper.toRequest(request)).thenReturn(new Project());
         when(skillService.getSkillsById(List.of(1L, 2L))).thenReturn(List.of(skill1, skill2));
         when(projectRepository.save(any(Project.class))).thenReturn(saved);
 
-        Project result = projectService.createProject(request);
+        Project result = projectService.createProject(project, List.of(1L, 2L));
 
         assertThat(result.getStack()).containsExactlyInAnyOrder(skill1, skill2);
-        verify(skillService).getSkillsById(request.skillsIds());
+        verify(skillService).getSkillsById(List.of(1L, 2L));
         verify(projectRepository).save(any(Project.class));
     }
 

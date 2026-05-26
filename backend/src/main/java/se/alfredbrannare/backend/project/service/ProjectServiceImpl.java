@@ -2,10 +2,8 @@ package se.alfredbrannare.backend.project.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import se.alfredbrannare.backend.project.dto.request.CreateProjectRequest;
 import se.alfredbrannare.backend.project.entity.Project;
 import se.alfredbrannare.backend.project.exception.ProjectNotFoundException;
-import se.alfredbrannare.backend.project.mapper.ProjectMapper;
 import se.alfredbrannare.backend.project.repository.ProjectRepository;
 import se.alfredbrannare.backend.skill.service.SkillService;
 
@@ -15,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
-    private final ProjectMapper projectMapper;
     private final SkillService skillService;
 
     @Override
@@ -29,15 +26,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project createProject(CreateProjectRequest request) {
-        Project project = projectMapper.toRequest(request);
-        project.setStack(skillService.getSkillsById(request.skillsIds()));
-
+    public Project createProject(Project project, List<Long> skillIds) {
+        project.setStack(skillService.getSkillsById(skillIds));
         return projectRepository.save(project);
     }
 
     @Override
-    public Project updateProject(Project project) {
+    public Project updateProject(Long id, Project project) {
         return null;
     }
 

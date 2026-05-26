@@ -27,7 +27,8 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity<ProjectResponse> createProject(@Valid @RequestBody CreateProjectRequest request) {
-        Project saved = projectService.createProject(request);
+        Project project = projectMapper.toEntity(request);
+        Project saved = projectService.createProject(project, request.skillsIds());
         return ResponseEntity.ok(projectMapper.toResponse(saved));
     }
 

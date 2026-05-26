@@ -17,6 +17,10 @@ public class SkillServiceImpl implements SkillService {
 
     @Override
     public List<Skill> getSkillsById(List<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return List.of();
+        }
+
         List<Skill> skills = skillRepository.findAllById(ids);
 
         if (skills.size() != ids.size()) {
