@@ -1,4 +1,4 @@
-package se.alfredbrannare.backend.entity;
+package se.alfredbrannare.backend.skill.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
