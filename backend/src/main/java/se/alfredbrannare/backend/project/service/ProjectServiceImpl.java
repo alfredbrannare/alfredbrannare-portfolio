@@ -32,8 +32,18 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project updateProject(Long id, Project project) {
-        return null;
+    public Project updateProject(Long id, Project project, List<Long> skillIds) {
+        Project existing = projectRepository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id));
+
+        existing.setTitle(project.getTitle());
+        existing.setDate(project.getDate());
+        existing.setDescription(project.getDescription());
+        existing.setDeployLink(project.getDeployLink());
+        existing.setRepoLink(project.getRepoLink());
+        existing.setImage(project.getImage());
+        existing.setStack(skillService.getSkillsById(skillIds));
+
+        return projectRepository.save(existing);
     }
 
     @Override

@@ -5,16 +5,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import se.alfredbrannare.backend.project.dto.request.CreateProjectRequest;
-import se.alfredbrannare.backend.project.dto.request.UpdateProjectRequest;
 import se.alfredbrannare.backend.project.entity.Project;
 import se.alfredbrannare.backend.project.exception.ProjectNotFoundException;
-import se.alfredbrannare.backend.project.mapper.ProjectMapper;
 import se.alfredbrannare.backend.project.repository.ProjectRepository;
 import se.alfredbrannare.backend.skill.entity.Skill;
 import se.alfredbrannare.backend.skill.service.SkillService;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,9 +28,6 @@ public class ProjectServiceImplTest {
 
     @InjectMocks
     private ProjectServiceImpl projectService;
-
-    @Mock
-    private ProjectMapper projectMapper;
 
     @Mock
     private SkillService skillService;
@@ -95,6 +88,38 @@ public class ProjectServiceImplTest {
         assertThat(result.getStack()).containsExactlyInAnyOrder(skill1, skill2);
         verify(skillService).getSkillsById(List.of(1L, 2L));
         verify(projectRepository).save(any(Project.class));
+    }
+
+    @Test
+    void updateProject_updatesFieldsAndResolvesSkills() {
+        Project existing = new Project();
+        existing.setId(1L);
+        existing.setTitle("Old Title");
+        existing.setDescription("Old Description");
+
+        Project updated = new Project();
+        updated.setTitle("New Title");
+        updated.setDescription("New Description");
+
+        Skill skill1 = new Skill();
+        skill1.setId(1L);
+
+        when(projectRepository.findById(1L)).thenReturn(Optional.of(existing));
+        when(skillService.getSkillsById(List.of(1L))).thenReturn(List.of(skill1));
+        when(projectRepository.save(any(Project.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        Project result = projectService.updateProject(1L, updated, List.of(1L));
+
+        assertThat(result.getTitle()).isEqualTo("New Title");
+        assertThat(result.getDescription()).isEqualTo("New Description");
+        assertThat(result.getStack()).containsExactly(skill1);
+    }
+
+    @Test
+    void updateProject_throwsWhenProjectNotFound() {
+        when(projectRepository.findById(1L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> projectService.updateProject(1L, new Project(), List.of(1L))).isInstanceOf(ProjectNotFoundException.class);
     }
 
 }

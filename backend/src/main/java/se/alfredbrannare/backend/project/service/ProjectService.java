@@ -10,6 +10,6 @@ public interface ProjectService {
     List<Project> getAllProjects();
     Project getProjectById(Long id);
     Project createProject(Project project, List<Long> skillIds);
-    Project updateProject(Long id, Project project);
+    Project updateProject(Long id, Project project, List<Long> skillIds);
     void deleteProject(Long id);
 }
