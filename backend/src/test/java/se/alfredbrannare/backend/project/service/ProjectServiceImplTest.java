@@ -122,4 +122,22 @@ public class ProjectServiceImplTest {
         assertThatThrownBy(() -> projectService.updateProject(1L, new Project(), List.of(1L))).isInstanceOf(ProjectNotFoundException.class);
     }
 
+    @Test
+    void deleteProject_deletesWhenExists() {
+        Project existing = new Project();
+        existing.setId(1L);
+
+        when(projectRepository.existsById(1L)).thenReturn(true);
+
+        projectService.deleteProject(1L);
+        verify(projectRepository).deleteById(1L);
+    }
+
+    @Test
+    void deleteProject_throwsWhenProjectNotFound() {
+        when(projectRepository.existsById(1L)).thenReturn(false);
+
+        assertThatThrownBy(() -> projectService.deleteProject(1L)).isInstanceOf(ProjectNotFoundException.class);
+    }
+
 }

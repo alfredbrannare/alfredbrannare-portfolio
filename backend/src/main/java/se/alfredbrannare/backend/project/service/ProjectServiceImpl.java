@@ -48,6 +48,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void deleteProject(Long id) {
+        if (!projectRepository.existsById(id)) {
+            throw new ProjectNotFoundException(id);
+        }
 
+        projectRepository.deleteById(id);
     }
 }
