@@ -102,6 +102,7 @@ public class ProjectServiceImplTest {
         Project result = projectService.createProject(request);
 
         assertThat(result.getStack()).containsExactlyInAnyOrder(skill1, skill2);
+        verify(skillService).getSkillsById(request.skillsIds());
         verify(projectRepository).save(any(Project.class));
     }
 
