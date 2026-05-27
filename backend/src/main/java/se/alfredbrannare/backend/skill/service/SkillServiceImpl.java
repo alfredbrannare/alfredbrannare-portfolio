@@ -48,13 +48,25 @@ public class SkillServiceImpl implements SkillService {
     }
 
     @Override
-    public Skill updateSkill(Skill skill) {
-        return null;
+    public Skill updateSkill(Long id, Skill skill) {
+        if (!skillRepository.existsById(id)) {
+            throw new SkillNotFoundException(id);
+        }
+
+        if (skillRepository.existsByNameAndTypeAndIdNot(skill.getName(), skill.getType(), id)) {
+            throw new SkillAlreadyExistsException(skill.getName(), skill.getType());
+        }
+
+        return skillRepository.save(skill);
     }
 
     @Override
     public void deleteSkill(Long id) {
+        if (!skillRepository.existsById(id)) {
+            throw new SkillNotFoundException(id);
+        }
 
+        skillRepository.deleteById(id);
     }
 
 }
