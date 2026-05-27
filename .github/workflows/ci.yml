@@ -22,3 +22,7 @@ jobs:
       - name: Build and test
         working-directory: backend
         run: ./mvnw --batch-mode verify
+
+      - name: Check formatting
+        working-directory: backend
+        run: ./mvnw --batch-mode spotless:check
