@@ -1,0 +1,3 @@
+#!/bin/sh
+cd backend && ./mvnw -B spotless:apply
+git add -u
