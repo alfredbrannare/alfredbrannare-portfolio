@@ -3,6 +3,7 @@ package se.alfredbrannare.backend.skill.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import se.alfredbrannare.backend.skill.entity.Skill;
+import se.alfredbrannare.backend.skill.exception.SkillAlreadyExistsException;
 import se.alfredbrannare.backend.skill.exception.SkillNotFoundException;
 import se.alfredbrannare.backend.skill.repository.SkillRepository;
 
@@ -30,6 +31,30 @@ public class SkillServiceImpl implements SkillService {
         }
 
         return skills;
+    }
+
+    @Override
+    public List<Skill> getAllSkills() {
+        return skillRepository.findAll();
+    }
+
+    @Override
+    public Skill createSkill(Skill skill) {
+        if (skillRepository.existsByNameAndType(skill.getName(), skill.getType())) {
+            throw new SkillAlreadyExistsException(skill.getName(), skill.getType());
+        }
+
+        return skillRepository.save(skill);
+    }
+
+    @Override
+    public Skill updateSkill(Skill skill) {
+        return null;
+    }
+
+    @Override
+    public void deleteSkill(Long id) {
+
     }
 
 }

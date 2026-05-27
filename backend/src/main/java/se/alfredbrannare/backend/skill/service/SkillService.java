@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface SkillService {
     public List<Skill> getSkillsById(List<Long> ids);
+    public List<Skill> getAllSkills();
+    public Skill createSkill(Skill skill);
+    public Skill updateSkill(Skill skill);
+    public void deleteSkill(Long id);
 }
