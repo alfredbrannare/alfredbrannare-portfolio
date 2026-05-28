@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -56,6 +57,24 @@ public class SkillServiceImplTest {
   void getSkillsById_returnsEmptyListWhenIdsIsEmpty() {
     assertThat(skillService.getSkillsById(List.of())).isEmpty();
     verify(skillRepository, never()).findAllById(any());
+  }
+
+  @Test
+  void getSkillById_returnsSkillWhenFound() {
+    Skill skill = newSkill("Java", "backend");
+    skill.setId(1L);
+
+    when(skillRepository.findById(1L)).thenReturn(Optional.of(skill));
+
+    assertThat(skillService.getSkillById(1L)).isEqualTo(skill);
+  }
+
+  @Test
+  void getSkillById_throwsWhenSkillNotFound() {
+    when(skillRepository.findById(1L)).thenReturn(Optional.empty());
+
+    assertThatThrownBy(() -> skillService.getSkillById(1L))
+        .isInstanceOf(SkillNotFoundException.class);
   }
 
   @Test

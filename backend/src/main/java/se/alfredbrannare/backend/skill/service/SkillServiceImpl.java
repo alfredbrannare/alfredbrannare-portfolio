@@ -33,6 +33,11 @@ public class SkillServiceImpl implements SkillService {
   }
 
   @Override
+  public Skill getSkillById(Long id) {
+    return skillRepository.findById(id).orElseThrow(() -> new SkillNotFoundException(id));
+  }
+
+  @Override
   public List<Skill> getAllSkills() {
     return skillRepository.findAll();
   }
@@ -55,6 +60,8 @@ public class SkillServiceImpl implements SkillService {
     if (skillRepository.existsByNameAndTypeAndIdNot(skill.getName(), skill.getType(), id)) {
       throw new SkillAlreadyExistsException(skill.getName(), skill.getType());
     }
+
+    skill.setId(id);
 
     return skillRepository.save(skill);
   }
