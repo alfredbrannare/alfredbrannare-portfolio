@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -119,7 +118,7 @@ public class SkillServiceImplTest {
 
   @Test
   void updateSkill_throwsWhenSkillNotFound() {
-    when(skillRepository.existsById(1L)).thenReturn(false);
+    when(skillRepository.findById(1L)).thenReturn(Optional.empty());
 
     assertThatThrownBy(() -> skillService.updateSkill(1L, newSkill("Java", "backend")))
         .isInstanceOf(SkillNotFoundException.class);
@@ -127,30 +126,30 @@ public class SkillServiceImplTest {
 
   @Test
   void updateSkill_savesSkill() {
-    Skill updated = newSkill("TypeScript", "frontend");
-    updated.setId(1L);
+    Skill existing = newSkill("Java", "backend");
+    existing.setId(1L);
 
-    when(skillRepository.existsById(1L)).thenReturn(true);
-    when(skillRepository.save(any(Skill.class))).thenReturn(updated);
+    Skill updated = newSkill("TypeScript", "frontend");
+
+    when(skillRepository.findById(1L)).thenReturn(Optional.of(existing));
+    when(skillRepository.existsByNameAndTypeAndIdNot("TypeScript", "frontend", 1L))
+        .thenReturn(false);
+    when(skillRepository.save(any(Skill.class))).thenAnswer(inv -> inv.getArgument(0));
 
     Skill result = skillService.updateSkill(1L, updated);
 
-    assertThat(result).isSameAs(updated);
-
-    ArgumentCaptor<Skill> captor = ArgumentCaptor.forClass(Skill.class);
-    verify(skillRepository).save(captor.capture());
-    Skill saved = captor.getValue();
-    assertThat(saved.getName()).isEqualTo("TypeScript");
-    assertThat(saved.getType()).isEqualTo("frontend");
+    assertThat(result.getName()).isEqualTo("TypeScript");
+    assertThat(result.getType()).isEqualTo("frontend");
   }
 
   @Test
   void updateSkill_throwsWhenNameAndTypeAlreadyExist() {
+    Skill existing = newSkill("Java", "backend");
+    existing.setId(1L);
     Skill newSkill = newSkill("Java", "backend");
 
-    when(skillRepository.existsById(1L)).thenReturn(true);
-    when(skillRepository.existsByNameAndTypeAndIdNot(newSkill.getName(), newSkill.getType(), 1L))
-        .thenReturn(true);
+    when(skillRepository.findById(1L)).thenReturn(Optional.of(existing));
+    when(skillRepository.existsByNameAndTypeAndIdNot("Java", "backend", 1L)).thenReturn(true);
 
     assertThatThrownBy(() -> skillService.updateSkill(1L, newSkill))
         .isInstanceOf(SkillAlreadyExistsException.class);
@@ -159,22 +158,18 @@ public class SkillServiceImplTest {
 
   @Test
   void updateSkill_savesWhenNameAndTypeBelongToSameSkill() {
+    Skill existing = newSkill("Java", "backend");
+    existing.setId(1L);
     Skill updated = newSkill("Java", "backend");
-    updated.setId(1L);
 
-    when(skillRepository.existsById(1L)).thenReturn(true);
-    when(skillRepository.existsByNameAndTypeAndIdNot(updated.getName(), updated.getType(), 1L))
-        .thenReturn(false);
-    when(skillRepository.save(any(Skill.class))).thenReturn(updated);
+    when(skillRepository.findById(1L)).thenReturn(Optional.of(existing));
+    when(skillRepository.existsByNameAndTypeAndIdNot("Java", "backend", 1L)).thenReturn(false);
+    when(skillRepository.save(any(Skill.class))).thenAnswer(inv -> inv.getArgument(0));
 
     Skill result = skillService.updateSkill(1L, updated);
 
-    assertThat(result).isSameAs(updated);
-    ArgumentCaptor<Skill> captor = ArgumentCaptor.forClass(Skill.class);
-    verify(skillRepository).save(captor.capture());
-    Skill saved = captor.getValue();
-    assertThat(saved.getName()).isEqualTo("Java");
-    assertThat(saved.getType()).isEqualTo("backend");
+    assertThat(result.getName()).isEqualTo("Java");
+    assertThat(result.getType()).isEqualTo("backend");
   }
 
   @Test
