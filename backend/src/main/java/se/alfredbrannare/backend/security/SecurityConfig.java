@@ -1,21 +1,29 @@
 package se.alfredbrannare.backend.security;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.client.RestClient;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
-  private final CustomOAuth2UserService customOAuth2UserService;
 
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+  public CustomOAuth2UserService customOAuth2UserService(
+      @Value("${app.admin-email}") String adminEmail) {
+    RestClient githubApi = RestClient.builder().baseUrl("https://api.github.com").build();
+    return new CustomOAuth2UserService(adminEmail, new DefaultOAuth2UserService(), githubApi);
+  }
+
+  @Bean
+  public SecurityFilterChain securityFilterChain(
+      HttpSecurity http, CustomOAuth2UserService customOAuth2UserService) throws Exception {
     http.authorizeHttpRequests(
             auth ->
                 auth.requestMatchers(HttpMethod.GET, "/api/**")
