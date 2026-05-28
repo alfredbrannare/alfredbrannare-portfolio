@@ -26,4 +26,10 @@ public class GlobalExceptionHandler {
             .collect(Collectors.joining(", "));
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
   }
+
+  @ExceptionHandler(ResourceAlreadyExistsException.class)
+  public ResponseEntity<String> handleAlreadyExists(ResourceAlreadyExistsException exception) {
+    log.warn("Already exists: {}", exception.getMessage());
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
+  }
 }

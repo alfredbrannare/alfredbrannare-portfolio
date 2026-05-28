@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import se.alfredbrannare.backend.skill.entity.Skill;
+import se.alfredbrannare.backend.skill.exception.SkillAlreadyExistsException;
 import se.alfredbrannare.backend.skill.exception.SkillNotFoundException;
 import se.alfredbrannare.backend.skill.repository.SkillRepository;
 
@@ -29,5 +30,48 @@ public class SkillServiceImpl implements SkillService {
     }
 
     return skills;
+  }
+
+  @Override
+  public Skill getSkillById(Long id) {
+    return skillRepository.findById(id).orElseThrow(() -> new SkillNotFoundException(id));
+  }
+
+  @Override
+  public List<Skill> getAllSkills() {
+    return skillRepository.findAll();
+  }
+
+  @Override
+  public Skill createSkill(Skill skill) {
+    if (skillRepository.existsByNameAndType(skill.getName(), skill.getType())) {
+      throw new SkillAlreadyExistsException(skill.getName(), skill.getType());
+    }
+
+    return skillRepository.save(skill);
+  }
+
+  @Override
+  public Skill updateSkill(Long id, Skill skill) {
+    if (!skillRepository.existsById(id)) {
+      throw new SkillNotFoundException(id);
+    }
+
+    if (skillRepository.existsByNameAndTypeAndIdNot(skill.getName(), skill.getType(), id)) {
+      throw new SkillAlreadyExistsException(skill.getName(), skill.getType());
+    }
+
+    skill.setId(id);
+
+    return skillRepository.save(skill);
+  }
+
+  @Override
+  public void deleteSkill(Long id) {
+    if (!skillRepository.existsById(id)) {
+      throw new SkillNotFoundException(id);
+    }
+
+    skillRepository.deleteById(id);
   }
 }
