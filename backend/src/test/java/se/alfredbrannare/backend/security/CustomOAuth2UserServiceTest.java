@@ -27,6 +27,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestClient;
+import se.alfredbrannare.backend.security.service.CustomOAuth2UserService;
 
 @ExtendWith(MockitoExtension.class)
 class CustomOAuth2UserServiceTest {

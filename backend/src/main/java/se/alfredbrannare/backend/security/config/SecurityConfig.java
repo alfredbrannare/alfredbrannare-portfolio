@@ -1,17 +1,16 @@
-package se.alfredbrannare.backend.security;
+package se.alfredbrannare.backend.security.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.client.RestClient;
+import se.alfredbrannare.backend.security.service.CustomOAuth2UserService;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfig {
 
   @Bean

@@ -1,4 +1,4 @@
-package se.alfredbrannare.backend.security;
+package se.alfredbrannare.backend.security.service;
 
 import java.util.List;
 import java.util.Map;
