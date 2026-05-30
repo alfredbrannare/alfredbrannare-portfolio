@@ -4,8 +4,10 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import se.alfredbrannare.backend.project.dto.request.CreateProjectRequest;
 import se.alfredbrannare.backend.project.dto.request.UpdateProjectRequest;
 import se.alfredbrannare.backend.project.dto.response.ProjectResponse;
@@ -52,5 +54,12 @@ public class ProjectController {
   public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
     projectService.deleteProject(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @PostMapping(value = "/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  public ResponseEntity<ProjectResponse> uploadImage(
+      @PathVariable Long id, @RequestPart("file") MultipartFile file) {
+    Project updated = projectService.addImageToProject(id, file);
+    return ResponseEntity.status(HttpStatus.OK).body(projectMapper.toResponse(updated));
   }
 }
