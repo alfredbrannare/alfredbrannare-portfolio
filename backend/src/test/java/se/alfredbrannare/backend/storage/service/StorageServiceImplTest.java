@@ -28,7 +28,12 @@ public class StorageServiceImplTest {
 
   private final R2Properties props =
       new R2Properties(
-          "https://api.example.com", "key", "secret", "test-bucket", "https://public.example.com");
+          "https://api.example.com",
+          "key",
+          "secret",
+          "test-bucket",
+          "https://public.example.com",
+          "auto");
 
   private StorageServiceImpl storageService;
 

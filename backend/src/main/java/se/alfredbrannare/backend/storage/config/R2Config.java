@@ -17,7 +17,7 @@ public class R2Config {
   S3Client s3Client(R2Properties props) {
     return S3Client.builder()
         .endpointOverride(URI.create(props.endpoint()))
-        .region(Region.of("auto"))
+        .region(Region.of(props.region()))
         .credentialsProvider(
             StaticCredentialsProvider.create(
                 AwsBasicCredentials.create(props.accessKey(), props.secretKey())))
