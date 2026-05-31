@@ -3,16 +3,19 @@ package se.alfredbrannare.backend.project.service;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import se.alfredbrannare.backend.project.entity.Project;
 import se.alfredbrannare.backend.project.exception.ProjectNotFoundException;
 import se.alfredbrannare.backend.project.repository.ProjectRepository;
 import se.alfredbrannare.backend.skill.service.SkillService;
+import se.alfredbrannare.backend.storage.service.StorageService;
 
 @Service
 @RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
   private final ProjectRepository projectRepository;
   private final SkillService skillService;
+  private final StorageService storageService;
 
   @Override
   public List<Project> getAllProjects() {
@@ -53,5 +56,15 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     projectRepository.deleteById(id);
+  }
+
+  public Project addImageToProject(Long id, MultipartFile file) {
+    Project existing =
+        projectRepository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id));
+
+    String imageUrl = storageService.upload(file);
+    existing.setImage(imageUrl);
+
+    return projectRepository.save(existing);
   }
 }

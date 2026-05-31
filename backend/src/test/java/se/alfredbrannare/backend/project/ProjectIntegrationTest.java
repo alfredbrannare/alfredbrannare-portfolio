@@ -2,12 +2,15 @@ package se.alfredbrannare.backend.project;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -17,6 +20,7 @@ import se.alfredbrannare.backend.project.exception.ProjectNotFoundException;
 import se.alfredbrannare.backend.project.service.ProjectService;
 import se.alfredbrannare.backend.skill.entity.Skill;
 import se.alfredbrannare.backend.skill.repository.SkillRepository;
+import se.alfredbrannare.backend.storage.service.StorageService;
 
 @SpringBootTest
 @Testcontainers
@@ -29,6 +33,8 @@ public class ProjectIntegrationTest {
   @Autowired private ProjectService projectService;
 
   @Autowired private SkillRepository skillRepository;
+
+  @MockitoBean private StorageService storageService;
 
   @Test
   void createProject_persistsWithSkills() {
@@ -144,5 +150,27 @@ public class ProjectIntegrationTest {
   void deleteProject_throwsWhenProjectNotFound() {
     assertThatThrownBy(() -> projectService.deleteProject(1L))
         .isInstanceOf(ProjectNotFoundException.class);
+  }
+
+  @Test
+  void addImageToProject_throwsWhenProjectNotFound() {
+    assertThatThrownBy(() -> projectService.addImageToProject(1L, null))
+        .isInstanceOf(ProjectNotFoundException.class);
+  }
+
+  @Test
+  void addImageToProject_setsImageUrlAndSaves() {
+    Project project = new Project();
+    project.setTitle("Portfolio");
+    Project saved = projectService.createProject(project, List.of());
+    String imageUrl = "https://example.com/image.jpg";
+    MockMultipartFile file =
+        new MockMultipartFile("file", "test.jpg", "image/jpeg", "test".getBytes());
+
+    when(storageService.upload(file)).thenReturn(imageUrl);
+
+    Project result = projectService.addImageToProject(saved.getId(), file);
+
+    assertThat(result.getImage()).isEqualTo(imageUrl);
   }
 }
