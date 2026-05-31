@@ -156,6 +156,16 @@ public class SkillIntegrationTest {
         .isInstanceOf(SkillNotFoundException.class);
   }
 
+  @Test
+  void createSkill_allowsSameNameDifferentType() {
+    skillRepository.save(newSkill("TypeScript", "frontend"));
+
+    Skill saved = skillService.createSkill(newSkill("TypeScript", "backend"));
+
+    assertThat(saved.getId()).isNotNull();
+    assertThat(skillService.getAllSkills()).hasSize(2);
+  }
+
   // Helper
   private Skill newSkill(String name, String type) {
     Skill skill = new Skill();
