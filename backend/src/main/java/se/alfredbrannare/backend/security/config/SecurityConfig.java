@@ -43,7 +43,8 @@ public class SecurityConfig {
             oauth2 ->
                 oauth2
                     .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
-                    .defaultSuccessUrl("http://localhost:3000", true));
+                    .defaultSuccessUrl("http://localhost:3000", true))
+        .csrf(csrf -> csrf.spa());
     return http.build();
   }
 }
