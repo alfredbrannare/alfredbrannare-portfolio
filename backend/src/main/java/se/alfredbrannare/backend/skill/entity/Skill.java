@@ -6,7 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "skills")
+@Table(
+    name = "skills",
+    uniqueConstraints =
+        @UniqueConstraint(
+            name = "uq_skills_name_type",
+            columnNames = {"name", "type"}))
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +21,7 @@ public class Skill {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(nullable = false, unique = true)
+  @Column(nullable = false)
   private String name;
 
   @Column(nullable = false)
