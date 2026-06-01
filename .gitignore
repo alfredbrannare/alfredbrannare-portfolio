@@ -7,3 +7,4 @@ Thumbs.db
 .env.*
 *.log
 .claude*
+node_modules
