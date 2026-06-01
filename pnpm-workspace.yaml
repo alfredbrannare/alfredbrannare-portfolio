@@ -1,0 +1,6 @@
+packages:
+  - frontend
+
+ignoreBuiltDependencies:
+  - sharp
+  - unrs-resolver
