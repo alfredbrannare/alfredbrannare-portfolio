@@ -22,7 +22,7 @@ export default function ProjectTimeline({ projects }: ProjectTimelineProps) {
   return (
     <section className="space-y-12 max-w-4xl mx-auto px-4 py-8">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Projects</h2>
+        <h2 className="text-3xl font-bold tracking-tight">Projects</h2>
         <p className="text-muted-foreground text-sm">
           A timeline of systems I&#39;ve been a part of.
         </p>

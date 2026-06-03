@@ -23,7 +23,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const isLongText = project.description.length > 120;
 
   return (
-    <Card className="flex w-full max-w-xl flex-col overflow-hidden border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md pt-0">
+    <Card className="flex w-full max-w-xl flex-col overflow-hidden border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md pt-0 gap-0 py-0">
       {project.image && (
         <div className="relative aspect-16/8 w-full overflow-hidden border-b bg-muted">
           <Image
@@ -36,14 +36,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
       )}
 
-      {/* Reduced bottom padding to tight-couple the title to the text */}
       <CardHeader className="px-4 pt-3 pb-1">
         <CardTitle className="text-xl font-bold tracking-tight">
           {project.title}
         </CardTitle>
       </CardHeader>
 
-      {/* Removed 'grow' and 'justify-between' so the layout doesn't forcefully stretch */}
       <div className="px-4 pb-3">
         <CardDescription className="text-sm text-muted-foreground leading-relaxed">
           <span className={!expanded ? 'line-clamp-4 md:line-clamp-none' : ''}>
@@ -61,7 +59,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </CardDescription>
       </div>
 
-      {/* Tightened padding (p-3), reduced gap (gap-2), and mt-auto keeps it stuck to the bottom naturally */}
       <CardFooter className="p-3 mt-auto border-t bg-muted/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
         <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start">
           {project.stack.map((skill) => (
