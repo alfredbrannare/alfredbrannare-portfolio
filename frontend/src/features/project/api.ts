@@ -1,6 +1,6 @@
-import {ProjectResponse} from "@/features/project/types";
-import {apiGet} from "@/shared/lib/apiClient";
+import { ProjectResponse } from '@/features/project/types';
+import { apiGet } from '@/shared/lib/apiClient';
 
 export function getProjects(): Promise<ProjectResponse[]> {
-    return apiGet<ProjectResponse[]>("/api/projects");
+  return apiGet<ProjectResponse[]>('/api/projects');
 }
