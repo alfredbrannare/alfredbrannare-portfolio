@@ -3,8 +3,6 @@
 import { ProjectResponse } from '@/features/project/types';
 import {
   Card,
-  CardAction,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -13,8 +11,7 @@ import {
 import Image from 'next/image';
 import IconWithTooltip from '@/features/skill/components/IconWithTooltip';
 import Link from 'next/link';
-import { Globe } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
+import { Globe, ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 
 interface ProjectCardProps {
@@ -23,89 +20,89 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const [expanded, setExpanded] = useState(false);
-  const isLong = project.description.length > 150;
+  const isLongText = project.description.length > 120;
 
   return (
-    <Card className="mx-auto flex h-full w-full max-w-sm flex-col gap-2 pt-0 pb-2 shadow-md">
+    <Card className="flex w-full max-w-xl flex-col overflow-hidden border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md pt-0">
       {project.image && (
-        <Image
-          src={project.image}
-          alt={`Image of ${project.title}`}
-          width={800}
-          height={450}
-          className="aspect-16/7 w-full object-cover"
-          loading="eager"
-        />
+        <div className="relative aspect-16/8 w-full overflow-hidden border-b bg-muted">
+          <Image
+            src={project.image}
+            alt={`Architecture of ${project.title}`}
+            fill
+            className="object-cover"
+            loading="eager"
+          />
+        </div>
       )}
 
-      <CardHeader className="px-2">
-        <CardTitle>{project.title}</CardTitle>
+      {/* Reduced bottom padding to tight-couple the title to the text */}
+      <CardHeader className="px-4 pt-3 pb-1">
+        <CardTitle className="text-xl font-bold tracking-tight">
+          {project.title}
+        </CardTitle>
       </CardHeader>
 
-      <CardDescription className="px-2">
-        <p className={!expanded ? 'line-clamp-3' : ''}>{project.description}</p>
+      {/* Removed 'grow' and 'justify-between' so the layout doesn't forcefully stretch */}
+      <div className="px-4 pb-3">
+        <CardDescription className="text-sm text-muted-foreground leading-relaxed">
+          <span className={!expanded ? 'line-clamp-4 md:line-clamp-none' : ''}>
+            {project.description}
+          </span>
 
-        {isLong && (
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className="mt-1 text-xs font-medium hover:underline"
-          >
-            {expanded ? 'Show less' : 'Read more'}
-          </button>
-        )}
-      </CardDescription>
+          {isLongText && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              className="mt-1 text-xs font-semibold text-foreground underline decoration-muted-foreground/40 hover:decoration-foreground transition-all block md:hidden"
+            >
+              {expanded ? 'Show less' : 'Read more'}
+            </button>
+          )}
+        </CardDescription>
+      </div>
 
-      <CardFooter className="mt-auto w-full px-2">
-        <div className="flex w-full justify-between">
-          <div className="flex flex-row gap-1">
-            {project.stack.map((skill) => (
-              <IconWithTooltip key={skill.id} tooltipContent={skill.name}>
+      {/* Tightened padding (p-3), reduced gap (gap-2), and mt-auto keeps it stuck to the bottom naturally */}
+      <CardFooter className="p-3 mt-auto border-t bg-muted/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+        <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start">
+          {project.stack.map((skill) => (
+            <IconWithTooltip key={skill.id} tooltipContent={skill.name}>
+              <div className="bg-background border rounded p-1 shadow-sm hover:scale-105 transition-transform">
                 <Image
                   src={skill.iconUrl}
                   alt={`Icon of ${skill.name}`}
-                  width={20}
-                  height={20}
+                  width={16}
+                  height={16}
+                  className="block"
                 />
-              </IconWithTooltip>
-            ))}
-          </div>
+              </div>
+            </IconWithTooltip>
+          ))}
+        </div>
 
-          <div className="flex flex-row gap-1">
-            {project.repoLink && (
-              <IconWithTooltip
-                tooltipContent={
-                  <Link
-                    href={project.repoLink}
-                    className="underline hover:text-amber-400"
-                  >
-                    View GitHub Repo
-                  </Link>
-                }
-              >
-                <Image
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
-                  alt="Github Icon"
-                  width={20}
-                  height={20}
-                />
-              </IconWithTooltip>
-            )}
+        <div className="flex items-center gap-3 shrink-0">
+          {project.repoLink && (
+            <Link
+              href={project.repoLink}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-xs font-mono font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <span>Source</span>
+              <ArrowUpRight className="h-3 w-3" />
+            </Link>
+          )}
 
-            {project.deployLink && (
-              <IconWithTooltip
-                tooltipContent={
-                  <Link
-                    href={project.deployLink}
-                    className="underline hover:text-amber-400"
-                  >
-                    Visit Live Site
-                  </Link>
-                }
-              >
-                <Globe width={20} height={20} />
-              </IconWithTooltip>
-            )}
-          </div>
+          {project.deployLink && (
+            <Link
+              href={project.deployLink}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-xs font-mono font-medium text-primary hover:underline transition-all"
+            >
+              <Globe className="h-3 w-3" />
+              <span>Live Demo</span>
+            </Link>
+          )}
         </div>
       </CardFooter>
     </Card>

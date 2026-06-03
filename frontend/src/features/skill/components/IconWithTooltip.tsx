@@ -9,7 +9,7 @@ import {
 
 interface IconWithTooltipProps {
   children: React.ReactNode;
-  tooltipContent: React.ReactNode;
+  tooltipContent?: React.ReactNode;
 }
 
 export default function IconWithTooltip({
@@ -23,7 +23,9 @@ export default function IconWithTooltip({
       <TooltipTrigger className="cursor-pointer" onClick={() => setOpen(!open)}>
         {children}
       </TooltipTrigger>
-      <TooltipContent>{tooltipContent}</TooltipContent>
+      <TooltipContent>
+        {tooltipContent ? tooltipContent : 'Not deployed'}
+      </TooltipContent>
     </Tooltip>
   );
 }
