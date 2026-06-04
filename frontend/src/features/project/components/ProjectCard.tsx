@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import Image from 'next/image';
-import IconWithTooltip from '@/features/skill/components/IconWithTooltip';
+import IconWithTooltip from '@/components/IconWithTooltip';
 import Link from 'next/link';
 import { Globe, ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
