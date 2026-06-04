@@ -46,7 +46,9 @@ export default function SkillTabs({ skills }: SkillTabsProps) {
                     width={50}
                     height={50}
                   />
-                  <span className={'hidden sm:block'}>{skill.name}</span>
+                  <span className={'hidden sm:block font-semibold'}>
+                    {skill.name}
+                  </span>
                 </IconWithTooltip>
               </div>
             ))}
