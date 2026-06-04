@@ -1,5 +1,4 @@
 import { ProjectResponse } from '@/features/project/types';
-import ProjectPreview from '@/features/project/components/ProjectPreview';
 import ProjectCard from '@/features/project/components/ProjectCard';
 
 interface ProjectTimelineProps {
@@ -21,13 +20,6 @@ export default function ProjectTimeline({ projects }: ProjectTimelineProps) {
 
   return (
     <section className="space-y-12 max-w-4xl mx-auto px-4 py-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">Projects</h2>
-        <p className="text-muted-foreground text-sm">
-          A timeline of systems I&#39;ve been a part of.
-        </p>
-      </div>
-
       <div className="relative border-l border-muted-foreground/20 ml-4 md:ml-36 space-y-12">
         {sortedProjects.map((project) => (
           <div
