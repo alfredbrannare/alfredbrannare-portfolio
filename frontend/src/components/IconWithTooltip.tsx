@@ -31,7 +31,7 @@ export default function IconWithTooltip({
         {children}
       </TooltipTrigger>
 
-      <TooltipContent className={hideOnDesktop ? 'md:hidden' : ''}>
+      <TooltipContent className={hideOnDesktop ? 'sm:hidden' : ''}>
         {tooltipContent ? tooltipContent : 'Not deployed'}
       </TooltipContent>
     </Tooltip>
