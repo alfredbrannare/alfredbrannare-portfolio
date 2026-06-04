@@ -15,15 +15,19 @@ export default function SkillTabs({ skills }: SkillTabsProps) {
       defaultValue="frontend"
       className="max-w-4xl mx-auto px-4 py-8 items-center"
     >
-      <TabsList variant="line">
+      <TabsList variant="line" className="group-data-horizontal/tabs:h-11">
         {uniqueTypes.map((type) => (
-          <TabsTrigger key={type} value={type}>
+          <TabsTrigger key={type} value={type} className="px-4 text-base">
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </TabsTrigger>
         ))}
       </TabsList>
       {uniqueTypes.map((type) => (
-        <TabsContent key={type} value={type} className={'flex gap-3'}>
+        <TabsContent
+          key={type}
+          value={type}
+          className={'flex flex-wrap justify-center gap-3'}
+        >
           {skills
             .filter((skill) => skill.type === type)
             .map((skill) => (
