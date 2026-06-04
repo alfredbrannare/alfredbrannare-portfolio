@@ -11,7 +11,10 @@ export default function SkillTabs({ skills }: SkillTabsProps) {
   const uniqueTypes = Array.from(new Set(skills.map((skill) => skill.type)));
 
   return (
-    <Tabs defaultValue="frontend">
+    <Tabs
+      defaultValue="frontend"
+      className="max-w-4xl mx-auto px-4 py-8 items-center"
+    >
       <TabsList variant="line">
         {uniqueTypes.map((type) => (
           <TabsTrigger key={type} value={type}>
