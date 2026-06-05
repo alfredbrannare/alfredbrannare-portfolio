@@ -9,10 +9,14 @@ const primaryMeny = [
 
 export default function Header() {
   return (
-    <header className="w-full bg-zinc-950 flex flex-row justify-between items-center px-4 py-2">
-      <Image src="/logo.png" alt="Logo" width={50} height={50} />
-      <Nav navItems={primaryMeny} />
-      <h1>Login</h1>
+    <header className="w-full bg-zinc-950">
+      <div className="mx-auto flex w-full max-w-4xl flex-row items-center justify-between px-4 py-2">
+        <div>
+          <Image src="/logo.png" alt="Logo" width={50} height={50} />
+        </div>
+        <Nav navItems={primaryMeny} />
+        <h1>Login</h1>
+      </div>
     </header>
   );
 }
