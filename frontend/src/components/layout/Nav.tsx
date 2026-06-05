@@ -47,7 +47,7 @@ export default function Nav({ navItems, variant = 'desktop' }: NavProps) {
                   <a
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded hover:text-brand-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange"
+                    className="block rounded hover:text-brand-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange transition-transform duration-300 hover:scale-110"
                   >
                     {item.label}
                   </a>
@@ -70,7 +70,7 @@ export default function Nav({ navItems, variant = 'desktop' }: NavProps) {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="hover:text-brand-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded"
+                  className="inline-block hover:text-brand-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded transition-transform duration-300 hover:scale-110"
                 >
                   {item.label}
                 </a>

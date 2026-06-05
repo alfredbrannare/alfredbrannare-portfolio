@@ -16,9 +16,13 @@ import { useState } from 'react';
 
 interface ProjectCardProps {
   project: ProjectResponse;
+  priority?: boolean;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({
+  project,
+  priority = false,
+}: ProjectCardProps) {
   const [expanded, setExpanded] = useState(false);
   const isLongText = project.description.length > 120;
 
@@ -32,7 +36,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             fill
             sizes="(max-width: 640px) 100vw, 576px"
             className="object-cover"
-            loading="eager"
+            priority={priority}
           />
         </div>
       )}

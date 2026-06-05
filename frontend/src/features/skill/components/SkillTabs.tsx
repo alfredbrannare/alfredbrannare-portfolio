@@ -17,7 +17,11 @@ export default function SkillTabs({ skills }: SkillTabsProps) {
     >
       <TabsList variant="line" className="group-data-horizontal/tabs:h-11">
         {uniqueTypes.map((type) => (
-          <TabsTrigger key={type} value={type} className="px-4 text-base">
+          <TabsTrigger
+            key={type}
+            value={type}
+            className="px-4 text-lg font-bold after:bg-brand-orange data-active:text-brand-orange data-active:text-shadow-[1px_1px_0_rgba(0,0,0,0.7)] hover:text-brand-orange transition-transform duration-300 hover:scale-110"
+          >
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </TabsTrigger>
         ))}
@@ -33,7 +37,7 @@ export default function SkillTabs({ skills }: SkillTabsProps) {
             .map((skill) => (
               <div
                 key={skill.id || skill.name}
-                className="flex flex-row justify-center text-center items-center"
+                className="flex flex-row justify-center text-center items-center transition-transform duration-300 hover:scale-110"
               >
                 <IconWithTooltip
                   tooltipContent={skill.name}
@@ -46,7 +50,11 @@ export default function SkillTabs({ skills }: SkillTabsProps) {
                     width={50}
                     height={50}
                   />
-                  <span className={'hidden sm:block font-semibold'}>
+                  <span
+                    className={
+                      'hidden sm:block font-semibold text-muted-foreground'
+                    }
+                  >
                     {skill.name}
                   </span>
                 </IconWithTooltip>
