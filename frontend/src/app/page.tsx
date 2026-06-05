@@ -2,6 +2,7 @@ import ProjectSection from '@/features/project/components/ProjectSection';
 import SkillSection from '@/features/skill/components/SkillSection';
 import { Separator } from '@/components/ui/separator';
 import HeroSection from '@/features/hero/components/HeroSection';
+import ContactSection from '@/features/contact/components/ContactSection';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +16,8 @@ export default function Home() {
       <SkillSection />
       <Separator />
       <ProjectSection />
+      <Separator />
+      <ContactSection />
     </main>
   );
 }
