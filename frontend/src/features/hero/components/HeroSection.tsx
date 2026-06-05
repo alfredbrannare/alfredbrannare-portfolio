@@ -13,7 +13,7 @@ export default function HeroSection() {
       <svg
         ref={svgRef}
         viewBox={PORTRAIT_VIEWBOX}
-        className="w-full max-w-md [&_.hero-line]:fill-none [&_.hero-line]:stroke-foreground [&_.hero-line]:stroke-[1.5] [&_.hero-line]:[stroke-linecap:round] [&_.hero-line]:[stroke-linejoin:round]"
+        className="w-full max-w-md [&_.hero-line]:fill-none [&_.hero-line]:stroke-zinc-950 [&_.hero-line]:stroke-[1.5] [&_.hero-line]:[stroke-linecap:round] [&_.hero-line]:[stroke-linejoin:round]"
         xmlns="http://www.w3.org/2000/svg"
       >
         {portraitPaths.map((d, i) => (

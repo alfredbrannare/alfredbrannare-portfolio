@@ -23,7 +23,7 @@ export default function HeroDescription() {
             JavaScript
           </span>
         </p>
-        <div className="space-y-2">
+        <div className="space-y-2 text-muted-foreground">
           <p>
             I&apos;m passionate about building a strong foundation in both
             frontend and backend technologies to create effective and
