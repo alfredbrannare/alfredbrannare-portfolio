@@ -32,6 +32,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
+        'scroll-smooth',
         'h-full',
         'antialiased',
         geistSans.variable,
