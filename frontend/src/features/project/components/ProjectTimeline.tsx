@@ -55,7 +55,7 @@ export default function ProjectTimeline({ projects }: ProjectTimelineProps) {
           className="absolute left-0 top-0 h-full w-0.5 -translate-x-1/2 origin-top bg-brand-orange"
           style={{ transform: 'scaleY(0)' }}
         />
-        {sortedProjects.map((project) => (
+        {sortedProjects.map((project, index) => (
           <div
             key={project.id}
             className="relative pl-6 md:pl-10 grid grid-cols-1 gap-2 md:gap-4 items-start group"
@@ -69,7 +69,7 @@ export default function ProjectTimeline({ projects }: ProjectTimelineProps) {
             </div>
 
             <div className="max-w-xl transition-transform duration-300 group-hover:translate-x-1">
-              <ProjectCard project={project} />
+              <ProjectCard project={project} priority={index === 0} />
             </div>
           </div>
         ))}
