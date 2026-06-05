@@ -6,7 +6,7 @@ export default async function SkillSection() {
   const skills = await getSkills();
 
   return (
-    <section>
+    <section id="skills">
       <SectionHeader
         title="Skills"
         description="A list of what I've worked with"

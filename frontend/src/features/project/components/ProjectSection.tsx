@@ -6,7 +6,7 @@ export default async function ProjectSection() {
   const projects = await getProjects();
 
   return (
-    <section>
+    <section id="projects">
       <SectionHeader
         title="Projects"
         description="A timeline of systems I've been a part of."
