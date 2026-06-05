@@ -30,6 +30,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             src={project.image}
             alt={`Architecture of ${project.title}`}
             fill
+            sizes="(max-width: 640px) 100vw, 576px"
             className="object-cover"
             loading="eager"
           />
