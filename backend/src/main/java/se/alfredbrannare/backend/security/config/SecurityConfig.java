@@ -27,7 +27,7 @@ public class SecurityConfig {
 
   @Bean
   public CorsConfigurationSource corsConfigurationSource(
-          @Value("${app.frontend-url}") String frontendUrl) {
+      @Value("${app.frontend-url}") String frontendUrl) {
     CorsConfiguration config = new CorsConfiguration();
     config.setAllowedOrigins(List.of(frontendUrl));
     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
