@@ -12,7 +12,7 @@ export default function HeroDescription() {
           </span>
           , a{' '}
           <span className="text-brand-orange font-semibold text-shadow-[1px_1px_0_rgba(0,0,0,0.7)]">
-            Software Developer
+            System Developer
           </span>{' '}
           specializing in{' '}
           <span className="text-brand-orange font-semibold text-shadow-[1px_1px_0_rgba(0,0,0,0.7)]">
