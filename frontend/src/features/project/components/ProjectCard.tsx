@@ -11,7 +11,7 @@ import {
 import Image from 'next/image';
 import IconWithTooltip from '@/components/IconWithTooltip';
 import Link from 'next/link';
-import { Globe, ArrowUpRight } from 'lucide-react';
+import { Globe, ArrowUpRight, ImageIcon } from 'lucide-react';
 import { useState } from 'react';
 import {
   HoverCard,
@@ -37,7 +37,7 @@ export default function ProjectCard({
 
   return (
     <Card className="flex w-full max-w-xl h-full flex-col overflow-hidden border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md pt-0 gap-0 py-0">
-      {project.image && (
+      {project.image ? (
         <div className="relative aspect-16/8 w-full overflow-hidden border-b bg-muted">
           <Image
             src={project.image}
@@ -48,8 +48,11 @@ export default function ProjectCard({
             priority={priority}
           />
         </div>
+      ) : (
+        <div className="aspect-16/8 w-full border-b bg-muted flex items-center justify-center">
+          <ImageIcon className="h-12 w-12 text-muted-foreground/40" />
+        </div>
       )}
-
       <CardHeader className="px-4 pt-3 pb-1">
         <CardTitle className="text-xl font-bold tracking-tight">
           {project.title}

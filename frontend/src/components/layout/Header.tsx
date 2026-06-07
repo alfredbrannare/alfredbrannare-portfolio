@@ -1,6 +1,7 @@
 import Nav from '@/components/layout/Nav';
 import Image from 'next/image';
 import LoginDialog from '@/features/auth/components/LoginDialog';
+import Link from 'next/link';
 
 const primaryMeny = [
   { label: 'Home', href: '/' },
@@ -12,7 +13,7 @@ export default function Header() {
   return (
     <header className="w-full bg-zinc-950 sticky top-0 z-50">
       <div className="mx-auto flex w-full max-w-4xl flex-row items-center justify-between px-4 py-2">
-        <div>
+        <Link href="/">
           <Image
             src="/logo.png"
             alt="Logo"
@@ -20,7 +21,7 @@ export default function Header() {
             height={50}
             style={{ height: 'auto' }}
           />
-        </div>
+        </Link>
         <div className="hidden sm:block">
           <Nav navItems={primaryMeny} variant="desktop" />
         </div>
