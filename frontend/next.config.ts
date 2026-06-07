@@ -2,6 +2,9 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+
     remotePatterns: [
       { protocol: 'https', hostname: 'images.alfredbrannare.dev' },
       { protocol: 'https', hostname: 'cdn.jsdelivr.net', pathname: '/**' },

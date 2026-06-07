@@ -54,6 +54,7 @@ export default function SkillTabs({ skills }: SkillTabsProps) {
                       width={48}
                       height={48}
                       className="object-contain"
+                      unoptimized
                     />
                   </div>
 
