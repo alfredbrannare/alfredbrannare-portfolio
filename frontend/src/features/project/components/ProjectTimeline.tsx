@@ -40,9 +40,9 @@ export default function ProjectTimeline({ projects }: ProjectTimelineProps) {
     );
   }
 
-  const sortedProjects = [...projects].sort((a, b) =>
-    b.date.localeCompare(a.date),
-  );
+  const sortedProjects = [...projects]
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 3);
 
   return (
     <section className="space-y-12 max-w-4xl mx-auto px-4 py-8">

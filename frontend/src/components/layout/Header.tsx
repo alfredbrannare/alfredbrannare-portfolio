@@ -3,9 +3,9 @@ import Image from 'next/image';
 import LoginDialog from '@/features/auth/components/LoginDialog';
 
 const primaryMeny = [
-  { label: 'Home', href: '#' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'Home', href: '/' },
+  { label: 'Skills', href: '/#skills' },
+  { label: 'Projects', href: '/#projects' },
 ];
 
 export default function Header() {
