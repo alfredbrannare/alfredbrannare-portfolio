@@ -79,7 +79,11 @@ export default function ContactFormFields() {
         </Field>
       </FieldGroup>
 
-      <Button type="submit" className="w-full" disabled={isPending}>
+      <Button
+        type="submit"
+        className="w-full hover:cursor-pointer"
+        disabled={isPending}
+      >
         {isPending ? 'Sending...' : 'Send Message'}
       </Button>
     </form>
