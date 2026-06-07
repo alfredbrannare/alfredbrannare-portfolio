@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface NavItem {
   label: string;
@@ -10,10 +11,17 @@ interface NavItem {
 interface NavProps {
   navItems: NavItem[];
   variant?: 'desktop' | 'mobile';
+  pathName?: string;
 }
 
 export default function Nav({ navItems, variant = 'desktop' }: NavProps) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (item: NavItem) => {
+    if (pathname === '/') return false;
+    return pathname === `/${item.label.toLowerCase()}`;
+  };
 
   switch (variant) {
     case 'mobile':
@@ -47,7 +55,7 @@ export default function Nav({ navItems, variant = 'desktop' }: NavProps) {
                   <a
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded hover:text-brand-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange transition-transform duration-300 hover:scale-110"
+                    className={`block rounded hover:text-brand-orange ${isActive(item) ? 'text-brand-orange' : ''} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange transition-transform duration-300 hover:scale-110`}
                   >
                     {item.label}
                   </a>
@@ -70,7 +78,11 @@ export default function Nav({ navItems, variant = 'desktop' }: NavProps) {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="inline-block hover:text-brand-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded transition-transform duration-300 hover:scale-110"
+                  className={`inline-block rounded transition-transform duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange ${
+                    isActive(item)
+                      ? 'text-brand-orange'
+                      : 'text-white hover:text-brand-orange'
+                  }`}
                 >
                   {item.label}
                 </a>

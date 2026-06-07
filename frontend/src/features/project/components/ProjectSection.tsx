@@ -2,6 +2,7 @@ import { getProjects } from '@/features/project/api';
 import ProjectTimeline from '@/features/project/components/ProjectTimeline';
 import SectionHeader from '@/components/SectionHeader';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default async function ProjectSection() {
   const projects = await getProjects();
@@ -14,7 +15,9 @@ export default async function ProjectSection() {
       />
       <div className="flex flex-col justify-center items-center">
         <ProjectTimeline projects={projects} />
-        <Button>View All Projects</Button>
+        <Button>
+          <Link href="/projects">View All Projects</Link>
+        </Button>
       </div>
     </section>
   );
