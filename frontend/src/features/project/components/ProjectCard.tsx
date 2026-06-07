@@ -13,6 +13,11 @@ import IconWithTooltip from '@/components/IconWithTooltip';
 import Link from 'next/link';
 import { Globe, ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@/components/ui/hover-card';
 
 interface ProjectCardProps {
   project: ProjectResponse;
@@ -26,8 +31,12 @@ export default function ProjectCard({
   const [expanded, setExpanded] = useState(false);
   const isLongText = project.description.length > 120;
 
+  const max_visible = 4;
+  const visibleStack = project.stack.slice(0, max_visible);
+  const remainingStack = project.stack.slice(max_visible);
+
   return (
-    <Card className="flex w-full max-w-xl flex-col overflow-hidden border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md pt-0 gap-0 py-0">
+    <Card className="flex w-full max-w-xl h-full flex-col overflow-hidden border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md pt-0 gap-0 py-0">
       {project.image && (
         <div className="relative aspect-16/8 w-full overflow-hidden border-b bg-muted">
           <Image
@@ -47,16 +56,16 @@ export default function ProjectCard({
         </CardTitle>
       </CardHeader>
 
-      <div className="px-4 pb-3">
+      <div className="px-4 pb-3 grow">
         <CardDescription className="text-sm text-muted-foreground leading-relaxed">
-          <span className={!expanded ? 'line-clamp-4 md:line-clamp-none' : ''}>
+          <span className={!expanded ? 'line-clamp-3' : ''}>
             {project.description}
           </span>
 
           {isLongText && (
             <button
               onClick={() => setExpanded(!expanded)}
-              className="mt-1 text-xs font-semibold text-foreground underline decoration-muted-foreground/40 hover:decoration-foreground transition-all block md:hidden"
+              className="mt-1 text-xs font-semibold text-foreground underline decoration-muted-foreground/40 hover:decoration-foreground transition-all block"
             >
               {expanded ? 'Show less' : 'Read more'}
             </button>
@@ -66,7 +75,7 @@ export default function ProjectCard({
 
       <CardFooter className="p-3 mt-auto border-t bg-muted/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
         <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start">
-          {project.stack.map((skill) => (
+          {visibleStack.map((skill) => (
             <IconWithTooltip key={skill.id} tooltipContent={skill.name}>
               <div className="bg-background border rounded p-1 shadow-sm hover:scale-105 transition-transform">
                 <Image
@@ -79,6 +88,38 @@ export default function ProjectCard({
               </div>
             </IconWithTooltip>
           ))}
+          {remainingStack.length > 0 && (
+            <HoverCard>
+              <HoverCardTrigger>
+                <button className="bg-background border rounded px-1.5 py-0.5 shadow-sm hover:scale-105 transition-transform text-[10px] font-bold text-muted-foreground cursor-default shrink-0 select-none h-6.5 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                  +{remainingStack.length}
+                </button>
+              </HoverCardTrigger>
+              <HoverCardContent
+                side="top"
+                align="center"
+                className="w-auto p-1.5 bg-popover text-popover-foreground shadow-md rounded-lg"
+              >
+                <div className="flex items-center gap-1.5">
+                  {remainingStack.map((skill) => (
+                    <IconWithTooltip
+                      key={skill.id}
+                      className="bg-background border rounded p-1 shadow-sm"
+                      tooltipContent={skill.name}
+                    >
+                      <Image
+                        src={skill.iconUrl}
+                        alt={`Icon of ${skill.name}`}
+                        width={16}
+                        height={16}
+                        className="block"
+                      />
+                    </IconWithTooltip>
+                  ))}
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+          )}
         </div>
 
         <div className="flex items-center gap-3 shrink-0">
