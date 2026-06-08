@@ -40,7 +40,10 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain securityFilterChain(
-      HttpSecurity http, CustomOAuth2UserService customOAuth2UserService) throws Exception {
+      HttpSecurity http,
+      CustomOAuth2UserService customOAuth2UserService,
+      @Value("${app.frontend-url}") String frontendUrl)
+      throws Exception {
     http.cors(Customizer.withDefaults())
         .authorizeHttpRequests(
             auth ->
@@ -62,7 +65,7 @@ public class SecurityConfig {
             oauth2 ->
                 oauth2
                     .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
-                    .defaultSuccessUrl("http://localhost:3000", true))
+                    .defaultSuccessUrl(frontendUrl, true))
         .csrf(csrf -> csrf.spa());
     return http.build();
   }
