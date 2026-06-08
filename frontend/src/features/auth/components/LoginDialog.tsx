@@ -23,7 +23,7 @@ export default function LoginDialog() {
           <DialogTitle>Login</DialogTitle>
         </DialogHeader>
         <div>
-          <Button render={<a href={OAUTH_LOGIN_URL} />}>
+          <Button nativeButton={false} render={<a href={OAUTH_LOGIN_URL} />}>
             Login with Github
           </Button>
         </div>
