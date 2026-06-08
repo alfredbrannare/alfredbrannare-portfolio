@@ -10,3 +10,13 @@ export interface ProjectResponse {
   image: string | null;
   stack: SkillResponse[];
 }
+
+export interface CreateProjectRequest {
+  title: string;
+  date?: string | null;
+  description?: string | null;
+  deployLink?: string | null;
+  repoLink?: string | null;
+  image?: string | null;
+  skillsIds?: number[] | null;
+}
