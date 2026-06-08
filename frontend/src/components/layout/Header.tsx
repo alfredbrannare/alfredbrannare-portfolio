@@ -1,7 +1,7 @@
 import Nav from '@/components/layout/Nav';
 import Image from 'next/image';
-import LoginDialog from '@/features/auth/components/LoginDialog';
 import Link from 'next/link';
+import AuthButton from '@/features/auth/components/AuthButton';
 
 const primaryMeny = [
   { label: 'Home', href: '/' },
@@ -19,7 +19,7 @@ export default function Header() {
             alt="Logo"
             width={50}
             height={50}
-            style={{ height: 'auto' }}
+            style={{ width: 'auto', height: 'auto' }}
           />
         </Link>
         <div className="hidden sm:block">
@@ -28,7 +28,7 @@ export default function Header() {
         <div className="block sm:hidden">
           <Nav navItems={primaryMeny} variant="mobile" />
         </div>
-        <LoginDialog />
+        <AuthButton />
       </div>
     </header>
   );
