@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { Pencil, Plus, Trash2 } from 'lucide-react';
+import ProjectFormDialog from '@/features/project/components/ProjectFormDialog';
 
 export default function ProjectAdmin() {
   const { data: projects, isPending, error } = useProjects();
@@ -33,10 +34,11 @@ export default function ProjectAdmin() {
   return (
     <div className="pt-6">
       <div className="mb-4 flex justify-center">
-        {/* TODO: wire to a create Dialog (useCreateProject) */}
-        <Button type="button">
-          <Plus /> Add project
-        </Button>
+        <ProjectFormDialog>
+          <Button type="button">
+            <Plus /> Add project
+          </Button>
+        </ProjectFormDialog>
       </div>
 
       <div className="flex flex-wrap justify-center gap-6">
@@ -47,15 +49,15 @@ export default function ProjectAdmin() {
           >
             <div className="relative w-full">
               <div className="absolute top-2 right-2 z-10 flex gap-1.5">
-                {/* TODO: wire to an edit Dialog (useUpdateProject) */}
-                <Badge
-                  variant="secondary"
-                  render={<button type="button" />}
-                  className="cursor-pointer backdrop-blur-sm"
-                >
-                  <Pencil className="size-3" /> Edit
-                </Badge>
-                {/* TODO: wire to a delete confirm Dialog (useDeleteProject) */}
+                <ProjectFormDialog project={project}>
+                  <Badge
+                    variant="secondary"
+                    render={<button type={'button'} />}
+                    className="cursor-pointer backdrop-blur-sm"
+                  >
+                    <Pencil className="size-3" /> Edit
+                  </Badge>
+                </ProjectFormDialog>
                 <Badge
                   variant="destructive"
                   render={<button type="button" />}
