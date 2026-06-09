@@ -20,3 +20,6 @@ export interface CreateProjectRequest {
   image?: string | null;
   skillsIds?: number[] | null;
 }
+
+// The backend UpdateProjectRequest is field-for-field identical to create.
+export type UpdateProjectRequest = CreateProjectRequest;
