@@ -3,7 +3,7 @@ import {
   ProjectResponse,
   UpdateProjectRequest,
 } from '@/features/project/types';
-import { apiGet, apiSend } from '@/shared/lib/apiClient';
+import { apiGet, apiSend, apiUpload } from '@/shared/lib/apiClient';
 
 export function getProjects(): Promise<ProjectResponse[]> {
   return apiGet<ProjectResponse[]>('/api/projects');
@@ -24,4 +24,10 @@ export function updateProject(
 
 export function deleteProject(id: number): Promise<void> {
   return apiSend<void>('DELETE', `/api/projects/${id}`);
+}
+
+export function uploadProjectImage(id: number, file: File): Promise<ProjectResponse> {
+  const formData = new FormData();
+  formData.append('file', file);
+  return apiUpload<ProjectResponse>(`/api/projects/${id}/image`, formData);
 }

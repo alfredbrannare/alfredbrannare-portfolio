@@ -35,3 +35,13 @@ export function apiSend<T>(
     body: body === undefined ? undefined : JSON.stringify(body),
   });
 }
+
+export function apiUpload<T>(path: string, formData: FormData): Promise<T> {
+  return request<T>(path, {
+    method: 'POST',
+    headers: {
+      ...csrfHeader(),
+    },
+    body: formData,
+  });
+}

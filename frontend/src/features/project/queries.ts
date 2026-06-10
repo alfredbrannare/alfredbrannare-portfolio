@@ -4,6 +4,7 @@ import {
   createProject,
   updateProject,
   deleteProject,
+  uploadProjectImage,
 } from './api';
 import { UpdateProjectRequest } from './types';
 
@@ -35,6 +36,15 @@ export function useDeleteProject() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: deleteProject,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['projects'] }),
+  });
+}
+
+export function useUploadProjectImage() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, file} : { id: number; file: File }) =>
+      uploadProjectImage(id, file),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['projects'] }),
   });
 }
