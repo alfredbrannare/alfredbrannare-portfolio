@@ -13,8 +13,8 @@ export interface ProjectResponse {
 
 export interface CreateProjectRequest {
   title: string;
-  date?: string | null;
-  description?: string | null;
+  date: string;
+  description: string;
   deployLink?: string | null;
   repoLink?: string | null;
   image?: string | null;

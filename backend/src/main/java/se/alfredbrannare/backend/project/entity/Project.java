@@ -24,9 +24,10 @@ public class Project {
   @Column(nullable = false)
   private String title;
 
+  @Column(nullable = false)
   private LocalDate date;
 
-  @Column(columnDefinition = "TEXT")
+  @Column(columnDefinition = "TEXT", nullable = false)
   private String description;
 
   private String deployLink;
