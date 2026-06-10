@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { Pencil, Plus, Trash2 } from 'lucide-react';
 import ProjectFormDialog from '@/features/project/components/ProjectFormDialog';
+import ProjectDeleteDialog from '@/features/project/components/ProjectDeleteDialog';
 
 export default function ProjectAdmin() {
   const { data: projects, isPending, error } = useProjects();
@@ -58,13 +59,15 @@ export default function ProjectAdmin() {
                     <Pencil className="size-3" /> Edit
                   </Badge>
                 </ProjectFormDialog>
-                <Badge
-                  variant="destructive"
-                  render={<button type="button" />}
-                  className="cursor-pointer backdrop-blur-sm"
-                >
-                  <Trash2 className="size-3" /> Delete
-                </Badge>
+                <ProjectDeleteDialog project={project}>
+                  <Badge
+                    variant="destructive"
+                    render={<button type="button" />}
+                    className="cursor-pointer backdrop-blur-sm"
+                  >
+                    <Trash2 className="size-3" /> Delete
+                  </Badge>
+                </ProjectDeleteDialog>
               </div>
               <ProjectCard project={project} />
             </div>
