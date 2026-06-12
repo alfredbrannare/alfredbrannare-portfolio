@@ -99,7 +99,7 @@ export default function ProjectFormDialog({
         }}
       >
         <DialogTrigger render={children} />
-        <DialogContent>
+        <DialogContent className="max-h-[calc(100vh-3.5rem)] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {isEditMode ? 'Edit project' : 'New project'}
@@ -173,7 +173,7 @@ export default function ProjectFormDialog({
                 ) : error ? (
                   <p>Error loading skills: {error.message}</p>
                 ) : (
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex max-5-32 flex-wrap gap-1.5 overflow-y-auto">
                     {uniqueSkills?.map((skill) => {
                       const selected = skillIds.includes(skill.id);
                       return (
@@ -231,8 +231,11 @@ export default function ProjectFormDialog({
                 </Field>
               )}
             </FieldGroup>
-            <DialogFooter>
-              <Button type="submit" disabled={mutation.isPending}>
+            <DialogFooter className="py-2 *:flex-1">
+              <Button
+                type="submit"
+                disabled={mutation.isPending}
+              >
                 {mutation.isPending && <Spinner />}
                 {mutation.isPending ? 'Saving...' : 'Save'}
               </Button>

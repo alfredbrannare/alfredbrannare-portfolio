@@ -4,6 +4,7 @@ import {
   DialogHeader,
   DialogTrigger,
   DialogTitle,
+  DialogDescription,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { LogIn } from 'lucide-react';
@@ -20,11 +21,14 @@ export default function LoginDialog() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Login</DialogTitle>
+          <DialogTitle>Sign In</DialogTitle>
+          <DialogDescription>
+            Log in to your account using your GitHub profile.
+          </DialogDescription>
         </DialogHeader>
-        <div>
+        <div className="flex flex-col items-center justify-center gap-4 pt-4">
           <Button nativeButton={false} render={<a href={OAUTH_LOGIN_URL} />}>
-            Login with Github
+            Continue with GitHub
           </Button>
         </div>
       </DialogContent>

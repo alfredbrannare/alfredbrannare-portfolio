@@ -102,7 +102,7 @@ export default function ProjectImageDialog({
               />
             </Field>
           </FieldGroup>
-          <DialogFooter>
+          <DialogFooter className="py-2 *:flex-1">
             <Button
               variant="outline"
               type="button"

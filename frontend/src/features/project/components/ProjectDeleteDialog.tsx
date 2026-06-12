@@ -56,7 +56,8 @@ export default function ProjectDeleteDialog({
             project.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter className="flex justify-end gap-2">
+        <AlertDialogFooter className="flex justify-end gap-2 py-2 *:flex-1">
+          {' '}
           <AlertDialogCancel variant="default" disabled={remove.isPending}>
             Cancel
           </AlertDialogCancel>
