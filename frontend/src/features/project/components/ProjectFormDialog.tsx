@@ -232,10 +232,7 @@ export default function ProjectFormDialog({
               )}
             </FieldGroup>
             <DialogFooter className="py-2 *:flex-1">
-              <Button
-                type="submit"
-                disabled={mutation.isPending}
-              >
+              <Button type="submit" disabled={mutation.isPending}>
                 {mutation.isPending && <Spinner />}
                 {mutation.isPending ? 'Saving...' : 'Save'}
               </Button>

@@ -23,8 +23,9 @@ export default function LoginDialog() {
         <DialogHeader>
           <DialogTitle>Admin sign in</DialogTitle>
           <DialogDescription>
-            This login is just for me to manage projects and skills <br/>
-            If you&#39;re visiting, there&#39;s nothing to unlock here. But hi! 👋
+            This login is just for me to manage projects and skills <br />
+            If you&#39;re visiting, there&#39;s nothing to unlock here. But hi!
+            👋
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col items-center justify-center gap-4 pt-4">
