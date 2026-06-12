@@ -1,3 +1,4 @@
 #!/bin/sh
 cd backend && ./mvnw -B spotless:apply
-git add -u
+git add -u .
+cd ../frontend && npx lint-staged
