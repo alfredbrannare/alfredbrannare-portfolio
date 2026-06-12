@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { Pencil, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
+import SkillFormDialog from '@/features/skill/components/SkillFormDialog';
+import SkillDeleteDialog from '@/features/skill/components/SkillDeleteDialog';
 
 export default function SkillAdmin() {
   const { data: skills, isPending, error } = useSkills();
@@ -33,10 +35,11 @@ export default function SkillAdmin() {
   return (
     <div className="pt-6">
       <div className="mb-4 flex justify-center">
-        {/* TODO: wire to a create Dialog (useCreateSkill) */}
+        <SkillFormDialog>
         <Button type="button">
           <Plus /> Add skill
         </Button>
+        </SkillFormDialog>
       </div>
 
       <Tabs defaultValue={uniqueTypes[0]} className="items-center">
@@ -69,24 +72,26 @@ export default function SkillAdmin() {
                   className="relative flex w-28 flex-col items-center justify-center rounded-xl border border-border/40 bg-background/50 p-4 text-center shadow-sm transition-all duration-300 hover:border-brand-orange/30 hover:bg-background sm:w-36"
                 >
                   <div className="absolute top-1.5 right-1.5 z-10 flex gap-1">
-                    {/* TODO: wire to an edit Dialog (useUpdateSkill) */}
-                    <Badge
-                      variant="secondary"
-                      render={<button type="button" />}
-                      className="cursor-pointer px-1.5"
-                      aria-label={`Edit ${skill.name}`}
-                    >
-                      <Pencil className="size-3" />
-                    </Badge>
-                    {/* TODO: wire to a delete confirm Dialog (useDeleteSkill) */}
-                    <Badge
-                      variant="destructive"
-                      render={<button type="button" />}
-                      className="cursor-pointer px-1.5"
-                      aria-label={`Delete ${skill.name}`}
-                    >
-                      <Trash2 className="size-3" />
-                    </Badge>
+                    <SkillFormDialog skill={skill}>
+                      <Badge
+                        variant="secondary"
+                        render={<button type="button" />}
+                        className="cursor-pointer px-1.5"
+                        aria-label={`Edit ${skill.name}`}
+                      >
+                        <Pencil className="size-3" />
+                      </Badge>
+                    </SkillFormDialog>
+                    <SkillDeleteDialog skill={skill}>
+                      <Badge
+                        variant="destructive"
+                        render={<button type="button" />}
+                        className="cursor-pointer px-1.5"
+                        aria-label={`Delete ${skill.name}`}
+                      >
+                        <Trash2 className="size-3" />
+                      </Badge>
+                    </SkillDeleteDialog>
                   </div>
 
                   <IconWithTooltip

@@ -43,7 +43,7 @@ export default function ProjectAdmin() {
       </div>
 
       <div className="flex flex-wrap justify-center gap-6">
-        {sortedProjects.map((project) => (
+        {sortedProjects.map((project, index) => (
           <div
             key={project.id}
             className="flex w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
@@ -69,7 +69,7 @@ export default function ProjectAdmin() {
                   </Badge>
                 </ProjectDeleteDialog>
               </div>
-              <ProjectCard project={project} />
+              <ProjectCard project={project} priority={index === 0}/>
             </div>
           </div>
         ))}

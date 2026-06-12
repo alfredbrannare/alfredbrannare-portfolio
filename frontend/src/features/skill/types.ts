@@ -10,3 +10,11 @@ export interface CreateSkillRequest {
   type: string;
   iconUrl?: string | null;
 }
+
+export type UpdateSkillRequest = CreateSkillRequest;
+
+export interface IconResult {
+  title: string;
+  url: string;
+  source: 'devicon' | 'simpleicons'
+}

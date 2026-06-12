@@ -20,7 +20,7 @@ export default async function ProjectsPage() {
         <Separator />
       </div>
       <div className="flex flex-wrap gap-6 justify-center">
-        {sortedProjects.map((project) => (
+        {sortedProjects.map((project, index) => (
           <div
             key={project.id}
             className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex"
@@ -32,7 +32,7 @@ export default async function ProjectsPage() {
               >
                 {new Date(project.date).toLocaleDateString('sv-SE')}
               </Badge>
-              <ProjectCard project={project} />
+              <ProjectCard project={project} priority={index === 0}/>
             </div>
           </div>
         ))}

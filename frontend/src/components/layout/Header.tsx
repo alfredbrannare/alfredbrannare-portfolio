@@ -20,6 +20,7 @@ export default function Header() {
             width={50}
             height={50}
             style={{ width: 'auto', height: 'auto' }}
+            loading="eager"
           />
         </Link>
         <div className="hidden sm:block">
