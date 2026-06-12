@@ -6,6 +6,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/sonner';
+import Providers from '@/app/providers';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -43,10 +44,12 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        <Header />
-        <TooltipProvider>{children}</TooltipProvider>
-        <Toaster position="top-center" />
-        <Footer />
+        <Providers>
+          <Header />
+          <TooltipProvider>{children}</TooltipProvider>
+          <Toaster position="top-center" />
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

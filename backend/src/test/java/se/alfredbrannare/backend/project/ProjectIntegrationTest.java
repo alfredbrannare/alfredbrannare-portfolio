@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,8 @@ public class ProjectIntegrationTest {
 
     Project project = new Project();
     project.setTitle("Portfolio");
+    project.setDescription("Portfolio description");
+    project.setDate(LocalDate.now());
 
     Project saved = projectService.createProject(project, List.of(savedSkill.getId()));
 
@@ -62,6 +65,8 @@ public class ProjectIntegrationTest {
 
     Project project = new Project();
     project.setTitle("Portfolio");
+    project.setDescription("Portfolio description");
+    project.setDate(LocalDate.now());
     Project saved = projectService.createProject(project, List.of(savedSkill.getId()));
 
     Project found = projectService.getProjectById(saved.getId());
@@ -85,6 +90,8 @@ public class ProjectIntegrationTest {
 
     Project project = new Project();
     project.setTitle("Portfolio");
+    project.setDescription("Portfolio description");
+    project.setDate(LocalDate.now());
     Project saved = projectService.createProject(project, List.of(savedSkill.getId()));
 
     Project updated = new Project();
@@ -108,6 +115,8 @@ public class ProjectIntegrationTest {
 
     Project project = new Project();
     project.setTitle("Portfolio");
+    project.setDescription("Portfolio description");
+    project.setDate(LocalDate.now());
     Project saved = projectService.createProject(project, List.of(java.getId()));
 
     Project update = new Project();
@@ -136,6 +145,8 @@ public class ProjectIntegrationTest {
   void deleteProject_removesProjectFromDatabase() {
     Project project = new Project();
     project.setTitle("Portfolio");
+    project.setDescription("Portfolio description");
+    project.setDate(LocalDate.now());
 
     Project saved = projectService.createProject(project, List.of());
 
@@ -162,6 +173,8 @@ public class ProjectIntegrationTest {
   void addImageToProject_setsImageUrlAndSaves() {
     Project project = new Project();
     project.setTitle("Portfolio");
+    project.setDescription("Portfolio description");
+    project.setDate(LocalDate.now());
     Project saved = projectService.createProject(project, List.of());
     String imageUrl = "https://example.com/image.jpg";
     MockMultipartFile file =

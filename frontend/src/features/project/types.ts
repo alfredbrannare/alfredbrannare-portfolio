@@ -10,3 +10,16 @@ export interface ProjectResponse {
   image: string | null;
   stack: SkillResponse[];
 }
+
+export interface CreateProjectRequest {
+  title: string;
+  date: string;
+  description: string;
+  deployLink?: string | null;
+  repoLink?: string | null;
+  image?: string | null;
+  skillsIds?: number[] | null;
+}
+
+// The backend UpdateProjectRequest is field-for-field identical to create.
+export type UpdateProjectRequest = CreateProjectRequest;

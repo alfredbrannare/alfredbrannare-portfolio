@@ -18,6 +18,12 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 interface ProjectCardProps {
   project: ProjectResponse;
@@ -38,16 +44,36 @@ export default function ProjectCard({
   return (
     <Card className="flex w-full max-w-xl h-full flex-col overflow-hidden border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md pt-0 gap-0 py-0">
       {project.image ? (
-        <div className="relative aspect-16/8 w-full overflow-hidden border-b bg-muted">
-          <Image
-            src={project.image}
-            alt={`Architecture of ${project.title}`}
-            fill
-            sizes="(max-width: 640px) 100vw, 576px"
-            className="object-cover"
-            priority={priority}
-          />
-        </div>
+        <Dialog>
+          <DialogTrigger
+            render={
+              <button
+                type="button"
+                className="relative aspect-16/8 w-full cursor-zoom-in overflow-hidden border-b bg-muted"
+              />
+            }
+          >
+            <Image
+              src={project.image}
+              alt={`Architecture of ${project.title}`}
+              fill
+              sizes="(max-width: 640px) 100vw, 576px"
+              className="object-cover"
+              priority={priority}
+            />
+          </DialogTrigger>
+          <DialogContent className="w-auto max-w-none sm:max-w-none overflow-hidden p-0">
+            <DialogTitle className="sr-only">{project.title}</DialogTitle>
+            <Image
+              src={project.image}
+              alt={`Architecture of ${project.title}`}
+              width={1920}
+              height={1080}
+              sizes="95vw"
+              className="h-auto w-auto max-h-[calc(100vh-2.5rem)] max-w-[calc(100vw-2.5rem)]"
+            />
+          </DialogContent>
+        </Dialog>
       ) : (
         <div className="aspect-16/8 w-full border-b bg-muted flex items-center justify-center">
           <ImageIcon className="h-12 w-12 text-muted-foreground/40" />
