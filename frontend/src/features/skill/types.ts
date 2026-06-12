@@ -16,5 +16,5 @@ export type UpdateSkillRequest = CreateSkillRequest;
 export interface IconResult {
   title: string;
   url: string;
-  source: 'devicon' | 'simpleicons'
+  source: 'devicon' | 'simpleicons';
 }

@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 interface DeviconEntry {
   name: string;
-  versions: { svg: string[]}
+  versions: { svg: string[] };
 }
 
 const devIconUrl = 'https://cdn.jsdelivr.net/gh/devicons/devicon/devicon.json';
@@ -17,14 +17,16 @@ async function fetchDevIconIndex(): Promise<IconResult[]> {
   const data: DeviconEntry[] = await response.json();
 
   return data.map((icon) => {
-    const version = icon.versions.svg.includes('original') ? 'original' : icon.versions.svg[0];
+    const version = icon.versions.svg.includes('original')
+      ? 'original'
+      : icon.versions.svg[0];
 
     return {
       title: icon.name,
       url: `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${icon.name}/${icon.name}-${version}.svg`,
       source: 'devicon',
     };
-  })
+  });
 }
 
 interface SimpleIconsEntry {
@@ -49,9 +51,8 @@ async function fetchSimpleIconsIndex(): Promise<IconResult[]> {
       title: icon.title,
       url: `https://cdn.simpleicons.org/${icon.slug}/${icon.hex}.svg`,
       source: 'simpleicons',
-    }
-  })
-
+    };
+  });
 }
 
 export function useIconIndex(enabled: boolean) {
@@ -61,7 +62,7 @@ export function useIconIndex(enabled: boolean) {
       const [devIcons, simpleIcons] = await Promise.all([
         fetchDevIconIndex(),
         fetchSimpleIconsIndex(),
-        ]);
+      ]);
 
       return [...devIcons, ...simpleIcons];
     },

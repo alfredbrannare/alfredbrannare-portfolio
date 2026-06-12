@@ -1,8 +1,17 @@
-'use client'
+'use client';
 
 import { ProjectResponse } from '@/features/project/types';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
-  AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { useDeleteProject } from '@/features/project/queries';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -13,11 +22,14 @@ interface ProjectDeleteDialogProps {
   children: React.ReactElement;
 }
 
-export default function ProjectDeleteDialog({project, children}: ProjectDeleteDialogProps) {
+export default function ProjectDeleteDialog({
+  project,
+  children,
+}: ProjectDeleteDialogProps) {
   const remove = useDeleteProject();
   const [open, setOpen] = useState(false);
 
-  const handleDelete =  () => {
+  const handleDelete = () => {
     const mutationOptions = {
       onSuccess: () => {
         toast.success('Project deleted successfully');
@@ -29,7 +41,7 @@ export default function ProjectDeleteDialog({project, children}: ProjectDeleteDi
     };
 
     remove.mutate(project.id, mutationOptions);
-  }
+  };
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -45,8 +57,22 @@ export default function ProjectDeleteDialog({project, children}: ProjectDeleteDi
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className="flex justify-end gap-2">
-          <AlertDialogCancel variant="default" disabled={remove.isPending}>Cancel</AlertDialogCancel>
-          <AlertDialogAction variant="destructive" onClick={handleDelete} disabled={remove.isPending}>{remove.isPending ? <><Spinner /> Deleting... </> : 'Delete'}</AlertDialogAction>
+          <AlertDialogCancel variant="default" disabled={remove.isPending}>
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction
+            variant="destructive"
+            onClick={handleDelete}
+            disabled={remove.isPending}
+          >
+            {remove.isPending ? (
+              <>
+                <Spinner /> Deleting...{' '}
+              </>
+            ) : (
+              'Delete'
+            )}
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -11,10 +11,7 @@ import {
 } from '@/components/ui/dialog';
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import {
-  useCreateSkill,
-  useUpdateSkill,
-} from '@/features/skill/queries';
+import { useCreateSkill, useUpdateSkill } from '@/features/skill/queries';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
@@ -28,16 +25,19 @@ interface SkillFormDialogProps {
   children: React.ReactElement;
 }
 
-export default function SkillFormDialog({ skill, children }: SkillFormDialogProps) {
+export default function SkillFormDialog({
+  skill,
+  children,
+}: SkillFormDialogProps) {
   const create = useCreateSkill();
   const update = useUpdateSkill();
   const [open, setOpen] = useState(false);
-  const { data: icons, isLoading} = useIconIndex(open);
+  const { data: icons, isLoading } = useIconIndex(open);
   const [iconQuery, setIconQuery] = useState('');
   const [iconUrl, setIconUrl] = useState(skill?.iconUrl ?? '');
 
   const results = searchIcons(icons ?? [], iconQuery);
-  
+
   const isEditMode = Boolean(skill);
   const mutation = isEditMode ? update : create;
 

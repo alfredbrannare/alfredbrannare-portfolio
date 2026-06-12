@@ -43,7 +43,7 @@ export function useDeleteProject() {
 export function useUploadProjectImage() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, file} : { id: number; file: File }) =>
+    mutationFn: ({ id, file }: { id: number; file: File }) =>
       uploadProjectImage(id, file),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['projects'] }),
   });

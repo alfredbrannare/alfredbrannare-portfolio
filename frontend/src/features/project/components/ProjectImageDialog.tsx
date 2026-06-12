@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { ProjectResponse } from '@/features/project/types';
 import {
@@ -21,11 +21,15 @@ import { Spinner } from '@/components/ui/spinner';
 
 interface ProjectImageDialogProps {
   project: ProjectResponse;
-  children?: React.ReactElement
+  children?: React.ReactElement;
   onClose?: () => void;
 }
 
-export default function ProjectImageDialog({ project, children, onClose }: ProjectImageDialogProps) {
+export default function ProjectImageDialog({
+  project,
+  children,
+  onClose,
+}: ProjectImageDialogProps) {
   const [open, setOpen] = useState(!children);
   const upload = useUploadProjectImage();
 
@@ -48,9 +52,9 @@ export default function ProjectImageDialog({ project, children, onClose }: Proje
       onError: (error: Error) => {
         toast.error(error.message || 'Failed to upload image');
       },
-    }
+    };
 
-    upload.mutate({id: project.id, file}, mutationOptions);
+    upload.mutate({ id: project.id, file }, mutationOptions);
   };
 
   return (
@@ -64,7 +68,9 @@ export default function ProjectImageDialog({ project, children, onClose }: Proje
       <DialogTrigger render={children} />
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{project.image ? 'Update image' : 'Add image'}</DialogTitle>
+          <DialogTitle>
+            {project.image ? 'Update image' : 'Add image'}
+          </DialogTitle>
           <DialogDescription>
             {project.image
               ? 'Update the image for this project'
@@ -106,7 +112,13 @@ export default function ProjectImageDialog({ project, children, onClose }: Proje
               {children ? 'Cancel' : 'Skip'}
             </Button>
             <Button type="submit" disabled={upload.isPending}>
-              {upload.isPending ? <><Spinner /> Uploading...</> : 'Upload'}
+              {upload.isPending ? (
+                <>
+                  <Spinner /> Uploading...
+                </>
+              ) : (
+                'Upload'
+              )}
             </Button>
           </DialogFooter>
         </form>

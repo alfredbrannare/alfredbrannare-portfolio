@@ -1,7 +1,16 @@
-'use client'
+'use client';
 
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
-  AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { Spinner } from '@/components/ui/spinner';
@@ -13,11 +22,14 @@ interface SkillDeleteDialogProps {
   children: React.ReactElement;
 }
 
-export default function SkillDeleteDialog({skill, children}: SkillDeleteDialogProps) {
+export default function SkillDeleteDialog({
+  skill,
+  children,
+}: SkillDeleteDialogProps) {
   const remove = useDeleteSkill();
   const [open, setOpen] = useState(false);
 
-  const handleDelete =  () => {
+  const handleDelete = () => {
     const mutationOptions = {
       onSuccess: () => {
         toast.success('Skill deleted successfully');
@@ -29,7 +41,7 @@ export default function SkillDeleteDialog({skill, children}: SkillDeleteDialogPr
     };
 
     remove.mutate(skill.id, mutationOptions);
-  }
+  };
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -45,8 +57,22 @@ export default function SkillDeleteDialog({skill, children}: SkillDeleteDialogPr
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className="flex justify-end gap-2">
-          <AlertDialogCancel variant="default" disabled={remove.isPending}>Cancel</AlertDialogCancel>
-          <AlertDialogAction variant="destructive" onClick={handleDelete} disabled={remove.isPending}>{remove.isPending ? <><Spinner /> Deleting... </> : 'Delete'}</AlertDialogAction>
+          <AlertDialogCancel variant="default" disabled={remove.isPending}>
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction
+            variant="destructive"
+            onClick={handleDelete}
+            disabled={remove.isPending}
+          >
+            {remove.isPending ? (
+              <>
+                <Spinner /> Deleting...{' '}
+              </>
+            ) : (
+              'Delete'
+            )}
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

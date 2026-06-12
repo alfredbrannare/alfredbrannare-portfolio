@@ -25,10 +25,10 @@ export function useCreateSkill() {
 export function useUpdateSkill() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({id, input}: {id: number, input: UpdateSkillRequest}) =>
+    mutationFn: ({ id, input }: { id: number; input: UpdateSkillRequest }) =>
       updateSkill(id, input),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['skills'] }),
-  })
+  });
 }
 
 export function useDeleteSkill() {
@@ -36,5 +36,5 @@ export function useDeleteSkill() {
   return useMutation({
     mutationFn: deleteSkill,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['skills'] }),
-  })
+  });
 }

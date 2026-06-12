@@ -69,7 +69,7 @@ export default function ProjectAdmin() {
                   </Badge>
                 </ProjectDeleteDialog>
               </div>
-              <ProjectCard project={project} priority={index === 0}/>
+              <ProjectCard project={project} priority={index === 0} />
             </div>
           </div>
         ))}

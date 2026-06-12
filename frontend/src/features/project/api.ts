@@ -26,7 +26,10 @@ export function deleteProject(id: number): Promise<void> {
   return apiSend<void>('DELETE', `/api/projects/${id}`);
 }
 
-export function uploadProjectImage(id: number, file: File): Promise<ProjectResponse> {
+export function uploadProjectImage(
+  id: number,
+  file: File,
+): Promise<ProjectResponse> {
   const formData = new FormData();
   formData.append('file', file);
   return apiUpload<ProjectResponse>(`/api/projects/${id}/image`, formData);

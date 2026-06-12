@@ -32,7 +32,7 @@ export default async function ProjectsPage() {
               >
                 {new Date(project.date).toLocaleDateString('sv-SE')}
               </Badge>
-              <ProjectCard project={project} priority={index === 0}/>
+              <ProjectCard project={project} priority={index === 0} />
             </div>
           </div>
         ))}

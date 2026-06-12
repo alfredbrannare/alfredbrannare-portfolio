@@ -36,9 +36,9 @@ export default function SkillAdmin() {
     <div className="pt-6">
       <div className="mb-4 flex justify-center">
         <SkillFormDialog>
-        <Button type="button">
-          <Plus /> Add skill
-        </Button>
+          <Button type="button">
+            <Plus /> Add skill
+          </Button>
         </SkillFormDialog>
       </div>
 
