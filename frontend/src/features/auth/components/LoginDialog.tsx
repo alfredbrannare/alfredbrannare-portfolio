@@ -21,9 +21,10 @@ export default function LoginDialog() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Sign In</DialogTitle>
+          <DialogTitle>Admin sign in</DialogTitle>
           <DialogDescription>
-            Log in to your account using your GitHub profile.
+            This login is just for me to manage projects and skills <br/>
+            If you&#39;re visiting, there&#39;s nothing to unlock here. But hi! 👋
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col items-center justify-center gap-4 pt-4">
